@@ -12,7 +12,11 @@ Team:
 
 ### Start
 To start frontend server:
-`make frontend`
+
+```
+# In root directory
+make frontend
+```
 
 ## Backend
 
