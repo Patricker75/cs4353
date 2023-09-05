@@ -37,3 +37,21 @@ make frontend
 
 ### Specifications
 - Python v3.10.12
+
+### Getting Started
+#### With Anaconda
+1. Install and setup [anaconda](https://www.anaconda.com/)
+2. ```
+   # In root directory
+   conda env create -f environment.yml
+   ```
+3. Activate the environment
+   ```
+   conda activate cs4353
+   ```
+#### Without Anaconda
+1. Install Python v3.10.12
+2. Setup python and pip
+3. ```
+   pip install flask
+   ```
