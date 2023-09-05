@@ -4,4 +4,4 @@ client:
 
 server:
 	echo 'Starting Server'
-	python ./backend/src/main.py
+	flask --app ./backend/src/main.py run
