@@ -1,0 +1,132 @@
+/* FuelQuoteForm.css */
+
+/* Apply background to the entire page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the form */
+form {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-bottom: 349px; /* Increase the negative margin to move the form up */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the input boxes */
+form input[type="text"],
+form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Style the labels to make text visible */
+form label {
+  color: black; /* Add this line to set label text color to black */
+}
+
+/* Style the submit button */
+form button[type="submit"] {
+  display: inline-block;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  min-width: 30px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer; /* Add this line to change cursor on hover */
+  transition: background-color 0.3s ease; /* Add this line for smooth hover effect */
+}
+
+/* Add a hover effect for the button */
+form button[type="submit"]:hover {
+  background: darkpurple;
+}
+.result {
+  background-color: grey;
+  color: white;
+  padding: 1em; /* Use relative units for padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 1em; /* Use relative units for margin */
+}
+
+/* Position the exit button container */
+.exit-button-container1 {
+  position: fixed;
+  top: 2em; /* Use relative units for margin */
+  right: 10%; /* Use relative units for positioning */
+  z-index: 999; /* Ensure the button appears above other content */
+  border: 1px solid black; /* Add a border */
+}
+
+/* Style the exit button */
+.exit-button1 {
+  background: purple; /* Change the background color to purple */
+  color: white;
+  border: 1px solid black; /* Add a border */
+  border-radius: 4px;
+  padding: 0.5em 1em; /* Use relative units for padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exit-button1:hover {
+  background: green; /* Change the hover background color to dark purple */
+}
+
+.display-data-button-container {
+  background: purple;
+  position: fixed;
+  top: 2em; /* Use relative units for margin */
+  right: 15%; /* Use relative units for positioning */
+  z-index: 999; /* Ensure the button appears above other content */
+  border-radius: 4px;
+  border: 1px solid black; 
+}
+
+.display-data-button {
+  background: purple; /* Change the background color to blue */
+  border: 1px solid black; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1em; /* Use relative units for padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+.display-data-button:hover {
+  background: darkblue; /* Change the hover background color to dark blue */
+}

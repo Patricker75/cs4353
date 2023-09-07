@@ -1,0 +1,68 @@
+/* DataDisplay.css */
+
+/* Apply background to the entire page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: white;
+  font-family: Arial, sans-serif;
+  
+}
+
+/* Style the data display */
+.data-display {
+  width: 100%;
+  max-width: 600px; /* Adjust the data display width */
+  text-align: left;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: black; /* Set text color to black */
+  margin-bottom: 350px;
+}
+
+/* Style the data items */
+.data-item {
+  margin-bottom: 10px;
+}
+
+/* Style the exit button container */
+.exit-button-container {
+  position: fixed;
+  top: 20px; /* Adjust the distance from the top as needed */
+  right: 20px; /* Adjust the distance from the right as needed */
+  z-index: 999; /* Ensure the button appears above other content */
+}
+
+/* Style the exit button */
+.exit-button {
+  background: purple; /* Change the background color to purple */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exit-button:hover {
+  background: darkblue; /* Change the hover background color to dark blue */
+}
