@@ -1,5 +1,3 @@
-/* DataDisplay.css */
-
 /* Apply background to the entire page */
 html, body {
   height: 100%;
@@ -12,57 +10,83 @@ html, body {
   overflow: hidden;
 }
 
+/* Center content vertically and horizontally */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  text-align: center;
   background: linear-gradient(to bottom, blue, purple, black);
   color: white;
   font-family: Arial, sans-serif;
-  
 }
 
-/* Style the data display */
-.data-display {
-  width: 100%;
-  max-width: 600px; /* Adjust the data display width */
-  text-align: left;
-  background-color: #f0f0f0;
-  padding: 20px;
+/* Style the button container */
+.button-container {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
   margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: black; /* Set text color to black */
-  margin-bottom: 350px;
 }
 
-/* Style the data items */
-.data-item {
-  margin-bottom: 10px;
-}
-
-/* Style the exit button container */
-.exit-button-container {
-  position: fixed;
-  top: 20px; /* Adjust the distance from the top as needed */
-  right: 20px; /* Adjust the distance from the right as needed */
-  z-index: 999; /* Ensure the button appears above other content */
-}
-
-/* Style the exit button */
-.exit-button {
-  background: purple; /* Change the background color to purple */
+/* Common button style */
+.button {
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
   color: white;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 5px; /* Add margin between buttons */
 }
 
-.exit-button:hover {
+.button:hover {
   background: darkblue; /* Change the hover background color to dark blue */
+}
+
+/* Style the data display */
+.data-display {
+  width: 100%;
+  max-width: 500px; /* Adjust the data display width */
+  text-align: left;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin: 10px 0; /* Slightly higher placement */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: grey;
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  height: 550px;
+  font-family: 'Poppins', sans-serif; /* Add your fancy font */
+  line-height: 1.6; /* Adjust line height for better spacing */
+  letter-spacing: 1px; /* Add letter spacing for better readability */
+}
+
+/* Center the h2 element */
+.data-display h2 {
+  text-align: center;
+  margin-top: 0; /* Remove margin-top for h2 */
+}
+
+/* Style the data items */
+.data-item {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Position the exit and display data buttons */
+.exit-button-container1 {
+  position: fixed;
+  top: 20px; /* Adjust the distance from the top as needed */
+  right: 770px; /* Move the button 400 pixels to the right */
+  z-index: 999; /* Ensure the button appears above other content */
+}
+
+.display-data-button-container {
+  position: fixed;
+  top: 20px; /* Adjust the distance from the top as needed */
+  right: 835px; /* Move the button 600 pixels to the right */
+  z-index: 999; /* Ensure the button appears above other content */
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './DataDisplay.css'; // Import your CSS file
-
+import { Link, useNavigate } from 'react-router-dom';
 function DataDisplay() {
   const [clientName, setClientName] = useState('');
   const [amount, setAmount] = useState(0);
@@ -10,6 +10,17 @@ function DataDisplay() {
   const [generatedProfitMargin, setGeneratedProfitMargin] = useState(null);
   const [clientHistory, setClientHistory] = useState([]);
 
+  const navigate = useNavigate();
+
+  const handleExit = (e) => {
+    alert("Wont actually work like this.. not authenticated..")
+    navigate('/');
+
+  }
+  const handleEntry = (e) => {
+    navigate('/fuel');
+
+  }
   useEffect(() => {
     // Simulate fetching client data and profit margin from an API or database
     const fetchData = async () => {
@@ -53,7 +64,8 @@ function DataDisplay() {
           <strong>Previous Client:</strong> {previousClient ? 'True' : 'False'}
         </div>
         <div className="data-item">
-          <strong>Profit Margin:</strong> {generatedProfitMargin !== null ? generatedProfitMargin.toFixed(2) : 'N/A'}
+          <strong>Profit Margin:</strong>{' '}
+          {generatedProfitMargin !== null ? generatedProfitMargin.toFixed(2) : 'N/A'}
         </div>
         <div className="data-item">
           <strong>Client History:</strong>
@@ -63,6 +75,13 @@ function DataDisplay() {
             ))}
           </ul>
         </div>
+      </div>
+     
+      <div className="display-data-button-container">
+        <button className="display-data-button" onClick={handleEntry}>Enter in Data</button>
+      </div>
+      <div className="exit-button-container1">
+        <button className="exit-button1" onClick={handleExit}>Exit</button>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ html, body {
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, blue, purple, black);
-  color: white;
+  color: grey; /* Set the text color to grey */
   font-family: Arial, sans-serif;
   text-align: center;
   overflow: hidden;
@@ -20,7 +20,7 @@ html, body {
   min-height: 100vh;
   text-align: center;
   background: linear-gradient(to bottom, blue, purple, black);
-  color: white;
+  color: grey; /* Set the text color to grey */
   font-family: Arial, sans-serif;
 }
 
@@ -34,6 +34,8 @@ form {
   margin-bottom: 349px; /* Increase the negative margin to move the form up */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  margin-top: 130px;
 }
 
 /* Style the input boxes */
@@ -49,7 +51,7 @@ form input[type="number"] {
 
 /* Style the labels to make text visible */
 form label {
-  color: black; /* Add this line to set label text color to black */
+  color: grey; /* Set the label text color to grey */
 }
 
 /* Style the submit button */
@@ -68,19 +70,16 @@ form button[type="submit"] {
 }
 
 /* Add a hover effect for the button */
-form button[type="submit"]:hover {
-  background: darkpurple;
-}
-.result {
+form button[type="submit"]:hover + .hover-effect-content {
   background-color: grey;
   color: white;
-  padding: 1em; /* Use relative units for padding */
+  padding: 1em;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-top: 1em; /* Use relative units for margin */
+  margin-top: 1em;
+  display: block;
 }
-
 /* Position the exit button container */
 .exit-button-container1 {
   position: fixed;
@@ -88,45 +87,32 @@ form button[type="submit"]:hover {
   right: 10%; /* Use relative units for positioning */
   z-index: 999; /* Ensure the button appears above other content */
   border: 1px solid black; /* Add a border */
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
 }
 
-/* Style the exit button */
-.exit-button1 {
-  background: purple; /* Change the background color to purple */
-  color: white;
-  border: 1px solid black; /* Add a border */
-  border-radius: 4px;
-  padding: 0.5em 1em; /* Use relative units for padding */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.exit-button1:hover {
-  background: green; /* Change the hover background color to dark purple */
-}
-
+/* Position the display data button container */
 .display-data-button-container {
-  background: purple;
   position: fixed;
   top: 2em; /* Use relative units for margin */
   right: 15%; /* Use relative units for positioning */
   z-index: 999; /* Ensure the button appears above other content */
   border-radius: 4px;
-  border: 1px solid black; 
+  border: 1px solid black;background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
 }
 
+/* Style the exit button and display data button */
+.exit-button1,
 .display-data-button {
-  background: purple; /* Change the background color to blue */
-  border: 1px solid black; 
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
   color: white;
   border: none;
   border-radius: 4px;
   padding: 0.5em 1em; /* Use relative units for padding */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 4px;
 }
 
+.exit-button1:hover,
 .display-data-button:hover {
-  background: darkblue; /* Change the hover background color to dark blue */
+  background: green; /* Change the hover background color to dark green */
 }
