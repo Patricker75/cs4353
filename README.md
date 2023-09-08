@@ -1,5 +1,6 @@
 ```markdown
-# 4353 Group Project
+## 4353 Group Project
+
 
 **Team:**
 - Hiep Tran
