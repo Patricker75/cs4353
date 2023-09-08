@@ -9,7 +9,7 @@
 
 ## Frontend Specifications
 - NodeJS v18.17.1
-
+Using react
 ## Prerequisites
 
 Before you can run this Flask application, ensure you have the following installed:
@@ -92,7 +92,6 @@ python app.py
    This will start the development server, and your React app will be accessible at http://localhost:3000/ in your web browser.
 ```
 
-You can paste this content into your README.md file.
 
 
 
