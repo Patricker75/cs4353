@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './DataDisplay.css'; // Import your CSS file
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 function DataDisplay() {
   const [clientName, setClientName] = useState('');
   const [amount, setAmount] = useState(0);
@@ -25,25 +27,28 @@ function DataDisplay() {
     // Simulate fetching client data and profit margin from an API or database
     const fetchData = async () => {
       try {
-        // Simulated data
-        const response = await fetch('/api/clientData');
-        const data = await response.json();
-
-        setClientName(data.clientName);
+        const response = await axios.get('http://localhost:4001/api/printClientData');
+        const data = response.data;
+  
+        console.log('Fetched Data:', data); // Debugging: Log the entire data object
+  
         setAmount(data.amount);
-        setPrice(data.price);
+        setClientHistory(data.clientHistory.map(item => item.toString()));
+        setClientName(data.clientName);
+        setGeneratedProfitMargin(data.generatedProfitMargin);
         setInState(data.inState);
         setPreviousClient(data.previousClient);
-        setGeneratedProfitMargin(data.generatedProfitMargin);
-        setClientHistory(data.clientHistory);
+        setPrice(data.price);
+   // Convert each item to a string
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-
+  
     fetchData();
   }, []);
-
+  
+  
   return (
     <div className="container">
       <div className="data-display">
