@@ -1,0 +1,118 @@
+/* FuelQuoteForm.css */
+
+/* Apply background to the entire page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: grey; /* Set the text color to grey */
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: grey; /* Set the text color to grey */
+  font-family: Arial, sans-serif;
+}
+
+/* Style the form */
+form {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-bottom: 349px; /* Increase the negative margin to move the form up */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  margin-top: 130px;
+}
+
+/* Style the input boxes */
+form input[type="text"],
+form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Style the labels to make text visible */
+form label {
+  color: grey; /* Set the label text color to grey */
+}
+
+/* Style the submit button */
+form button[type="submit"] {
+  display: inline-block;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  min-width: 30px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer; /* Add this line to change cursor on hover */
+  transition: background-color 0.3s ease; /* Add this line for smooth hover effect */
+}
+
+/* Add a hover effect for the button */
+form button[type="submit"]:hover + .hover-effect-content {
+  background-color: grey;
+  color: white;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 1em;
+  display: block;
+}
+/* Position the exit button container */
+.exit-button-container1 {
+  position: fixed;
+  top: 2em; /* Use relative units for margin */
+  right: 10%; /* Use relative units for positioning */
+  z-index: 999; /* Ensure the button appears above other content */
+  border: 1px solid black; /* Add a border */
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+}
+
+/* Position the display data button container */
+.display-data-button-container {
+  position: fixed;
+  top: 2em; /* Use relative units for margin */
+  right: 15%; /* Use relative units for positioning */
+  z-index: 999; /* Ensure the button appears above other content */
+  border-radius: 4px;
+  border: 1px solid black;background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+}
+
+/* Style the exit button and display data button */
+.exit-button1,
+.display-data-button {
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1em; /* Use relative units for padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exit-button1:hover,
+.display-data-button:hover {
+  background: green; /* Change the hover background color to dark green */
+}

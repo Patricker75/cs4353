@@ -1,6 +1,6 @@
 client:
 	echo 'Starting Client'
-	npm run dev --prefix frontend
+	npm run start --prefix frontend
 
 server:
 	echo 'Starting Server'
