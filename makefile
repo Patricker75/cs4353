@@ -4,4 +4,4 @@ client:
 
 server:
 	echo 'Starting Server'
-	python ./backend/src/main.py
+	python ./backend/main.py
