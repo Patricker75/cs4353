@@ -12,13 +12,14 @@ export const ClientProfile = () => {
     evt.preventDefault();
     evt.stopPropagation();
 
-    console.log({
-      name,
-      mainAddress,
-      city,
-      state,
-      zipcode
-    })
+    
+    // {
+    //   name,
+    //   mainAddress,
+    //   city,
+    //   state,
+    //   zipcode
+    // }
   }
 
   return (
