@@ -4,6 +4,7 @@ import Login from './components/Login';
 import FuelQuoteForm from './components/FuelQuoteForm';
 import RegistrationForm from './components/RegistrationForm';
 import DataDisplay from './components/DataDisplay';
+import { ClientProfile } from './components/ClientProfile';
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/register" element={<RegistrationForm/>} />,
         <Route path="/fuel" element={<FuelQuoteForm/>} />,
         <Route path="/display" element={<DataDisplay/>} />,
+        <Route path="/profile" element={<ClientProfile />} />
         </Routes>
     </Router>
   );
