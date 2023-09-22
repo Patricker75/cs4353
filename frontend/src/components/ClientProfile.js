@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateProfile } from "../redux/slices/profileSlice";
 
 export const ClientProfile = () => {
   const [name, setName] = useState("");
@@ -8,19 +10,22 @@ export const ClientProfile = () => {
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     evt.stopPropagation();
 
-    
-    // {
-    //   name,
-    //   mainAddress,
-    //   city,
-    //   state,
-    //   zipcode
-    // }
-  }
+    let newProfile = {
+      name,
+      mainAddress,
+      city,
+      state,
+      zipcode,
+    };
+
+    dispatch(updateProfile(newProfile))
+  };
 
   return (
     <>
