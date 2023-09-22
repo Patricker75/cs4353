@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../redux/slices/profileSlice";
+import { useNavigate } from "react-router-dom";
 
 export const ClientProfile = () => {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ export const ClientProfile = () => {
   const [zipcode, setZipcode] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -25,6 +27,7 @@ export const ClientProfile = () => {
     };
 
     dispatch(updateProfile(newProfile))
+    navigate('/fuel')
   };
 
   return (
