@@ -24,6 +24,8 @@ html, body {
 
 /* Style the table to be as wide as the entire page */
 table {
+  background-color: rgb(14, 14, 14);
+  color: white;
   width: 100%;
   max-width: none;
 }
@@ -37,13 +39,13 @@ table th {
 
 /* Style the table cells */
 table td {
+  background-color: rgb(37, 37, 37);
   padding: 10px;
 }
 
 /* Add a hover effect for table rows */
-table tbody tr:hover {
+table tbody tr:hover td{
   background-color: #800080;
-  color: white;
 }
 
 /* Style the exit button container */
