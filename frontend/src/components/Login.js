@@ -13,7 +13,7 @@ const Login = () => {
 
  
     alert("This is email " + email, " This is password " + password)
-    navigate('/fuel');
+    navigate('/profile');
   };
 
   const handleRegister = () => {
