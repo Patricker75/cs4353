@@ -16,8 +16,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  width: 100%; /* Make the container as wide as the page */
+  min-height: 80vh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: linear-gradient(to bottom, blue, purple, black);
   padding: 20px; /* Add some padding to center content within the container */
