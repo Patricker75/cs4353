@@ -1,52 +1,55 @@
-import React, { useState } from 'react';
-import './FuelQuoteForm.css'; // Import your CSS file
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import Axios
+import React, { useState, useEffect } from "react";
+import "./FuelQuoteForm.css"; // Import your CSS file
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import Axios
+import { useSelector } from "react-redux";
 
 function FuelQuoteForm() {
-  const [clientName, setClientName] = useState('');
-  const [amount, setAmount] = useState(0);
-  const [price, setPrice] = useState(0.0);
-  const [inState, setInState] = useState(true);
-  const [previousClient, setPreviousClient] = useState(false);
+  const today = (new Date()).toISOString().split('T')[0];
+
+  const [amount, setAmount] = useState(1);
+  const [unitPrice, setUnitPrice] = useState(10);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [deliveryDate, setDeliveryDate] = useState(today);
+
   const [generatedProfitMargin, setGeneratedProfitMargin] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Track login state
+
+  const address = useSelector((state) => state.profile.profile.mainAddress);
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    setTotalPrice(unitPrice * amount)
+  }, [amount])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if all form fields have values
-    if (!clientName || !amount || !price) {
-      alert('Please fill out all required fields.');
+    if (!amount) {
+      alert("Please fill out all required fields.");
       return;
     }
 
     try {
       // Prepare the data to send
       const dataToSend = {
-        clientName,
-        amount,
-        price,
-        inState,
-        previousClient,
       };
 
       // Send a POST request to the Flask backend
       const response = await axios.post(
-        'http://localhost:4001/api/updateClientData',
+        "http://localhost:4001/api/updateClientData",
         dataToSend
       );
 
       if (response.status === 200) {
-        console.log('Data updated successfully.');
+        console.log("Data updated successfully.");
         // You can handle a successful response here if needed
       } else {
-        console.error('Failed to update data.');
+        console.error("Failed to update data.");
         // Handle failure if needed
       }
     } catch (error) {
-      console.error('Error updating data:', error);
+      console.error("Error updating data:", error);
       // Handle the error if needed
     }
     alert("Has been submitted or tried");
@@ -54,11 +57,11 @@ function FuelQuoteForm() {
 
   const handleExit = (e) => {
     alert("Won't actually work like this... not authenticated..");
-    navigate('/');
+    navigate("/");
   };
 
   const handleDisplayData = (e) => {
-    navigate('/display');
+    navigate("/display");
   };
 
   return (
@@ -66,61 +69,43 @@ function FuelQuoteForm() {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="clientName">Client Name:</label>
-            <input
-              type="text"
-              id="clientName"
-              placeholder="Client Name"
-              value={clientName}
-              onChange={(e) => setClientName(e.target.value)}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="amount">Amount or Number:</label>
+            <label htmlFor="amount">Amount to Request:</label>
             <input
               type="number"
               id="amount"
               placeholder="Amount or Number"
               value={amount}
               onChange={(e) => setAmount(parseInt(e.target.value))}
+              min='1'
+              required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="address">Delivery Address:</label>
+            <p>{address}</p>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="deliveryDate">Delivery Date</label>
             <input
-              type="number"
-              id="price"
-              step="0.01"
-              placeholder="Price"
-              value={price}
-              onChange={(e) => setPrice(parseFloat(e.target.value))}
+              type="date"
+              name="deliveryDate"
+              id="deliveryDate"
+              value={deliveryDate}
+              onChange={(evt) => setDeliveryDate(evt)}
+              min={today}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="inState">In State:</label>
-            <select
-              id="inState"
-              value={inState}
-              onChange={(e) => setInState(e.target.value === 'true')}
-            >
-              <option value="true">In State (True)</option>
-              <option value="false">In State (False)</option>
-            </select>
+            <label htmlFor="unitPrice">Price per Gallon:</label>
+            <p>${unitPrice}</p>
           </div>
 
           <div className="form-group">
-            <label htmlFor="previousClient">Previous Client:</label>
-            <select
-              id="previousClient"
-              value={previousClient}
-              onChange={(e) => setPreviousClient(e.target.value === 'true')}
-            >
-              <option value="true">Previous Client (True)</option>
-              <option value="false">Previous Client (False)</option>
-            </select>
+            <label htmlFor="unitPrice">Total:</label>
+            <p>${totalPrice}</p>
           </div>
 
           <div className="form-group">
@@ -135,7 +120,6 @@ function FuelQuoteForm() {
               </div>
             )}
           </div>
-
         </form>
       </div>
 
@@ -148,10 +132,7 @@ function FuelQuoteForm() {
 
       {/* Display Data button */}
       <div className="display-data-button-container">
-        <button
-          className="display-data-button"
-          onClick={handleDisplayData}
-        >
+        <button className="display-data-button" onClick={handleDisplayData}>
           Display Data
         </button>
       </div>
