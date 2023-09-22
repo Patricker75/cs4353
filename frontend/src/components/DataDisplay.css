@@ -22,6 +22,10 @@ html, body {
   padding: 20px; /* Add some padding to center content within the container */
 }
 
+h2 {
+  color: white;
+}
+
 /* Style the table to be as wide as the entire page */
 table {
   background-color: rgb(14, 14, 14);
