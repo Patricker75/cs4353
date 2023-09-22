@@ -51,7 +51,6 @@ function DataDisplay() {
   
   return (
     <div className="container">
-      <div className="data-display">
         <h2>Data Display</h2>
         <div className="data-item">
           <strong>Client Name:</strong> {clientName}
@@ -80,10 +79,9 @@ function DataDisplay() {
             ))}
           </ul>
         </div>
-      </div>
      
-      <div className="display-data-button-container">
-        <button className="display-data-button" onClick={handleEntry}>Enter in Data</button>
+      <div className="fuel-button-container">
+        <button className="fuel-button" onClick={handleEntry}>Head to Fuel</button>
       </div>
       <div className="exit-button-container1">
         <button className="exit-button1" onClick={handleExit}>Exit</button>

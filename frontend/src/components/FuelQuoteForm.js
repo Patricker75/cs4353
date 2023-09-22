@@ -66,7 +66,6 @@ function FuelQuoteForm() {
 
   return (
     <div className="container">
-      <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="amount">Amount to Request:</label>
@@ -121,7 +120,6 @@ function FuelQuoteForm() {
             )}
           </div>
         </form>
-      </div>
 
       {/* Exit button */}
       <div className="exit-button-container1">
