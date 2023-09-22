@@ -103,19 +103,6 @@ function FuelQuoteTable() {
         <p>Loading data...</p>
       )}
 
-      {/* Exit button */}
-      <div className="exit-button-container1">
-        <button className="exit-button1" onClick={handleExit}>
-          Exit
-        </button>
-      </div>
-
-      {/* Display Data button */}
-      <div className="display-data-button-container">
-        <button className="display-data-button" onClick={handleDisplayData}>
-          Head to Fuel
-        </button>
-      </div>
     </div>
   );
 }
