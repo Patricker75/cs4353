@@ -1,9 +1,11 @@
 name: cs4353
+
+# This YAML file defines the package dependencies and channels for a software project.
+# List of channels where packages will be searched for.
 channels:
   - conda-forge
   - defaults
-dependencies:
-  - _libgcc_mutex=0.1=conda_forge
+dependencies: # List of package dependencies with their specific versions.
   - _openmp_mutex=4.5=2_gnu
   - blinker=1.6.2=pyhd8ed1ab_0
   - bzip2=1.0.8=h7f98852_4
