@@ -44,6 +44,14 @@ def print_client_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/updateProfile', methods=['PUT'])
+def update_profile():
+    try:
+        print(request)
+        return 'OK', 200
+    except Exception as e:
+        return e, 400
+
 # ... Other routes ...
 
 if __name__ == '__main__':
