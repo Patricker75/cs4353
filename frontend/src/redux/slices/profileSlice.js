@@ -11,7 +11,7 @@ const initialState = {
     zipcode: "",
   },
   isLoading: false,
-  error: ""
+  error: "",
 };
 
 export const updateProfile = createAsyncThunk(
@@ -25,38 +25,40 @@ export const updateProfile = createAsyncThunk(
         username,
       },
       body: {
-        profile: updateProfile,
+        profile: updatedProfile,
       },
     };
 
-    return await axios
-      .put("localhost:4001/api/updateProfile", config)
-      .then((response) => response.data)
-      .catch((err) => {
-        console.log(err);
-        rejectWithValue(err)
-      });
+    return updatedProfile
+
+    // return await axios
+    //   .put("localhost:4001/api/updateProfile", config)
+    //   .then((response) => response.data)
+    //   .catch((err) => {
+    //     console.log(err);
+    //     rejectWithValue(err);
+    //   });
   }
 );
 
 export const profileSlice = createSlice({
-  name: 'profile',
+  name: "profile",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(updateProfile.pending, (state) => {
-      state.isLoading = true
-    })
+      state.isLoading = true;
+    });
     builder.addCase(updateProfile.fulfilled, (state, action) => {
-      state.isLoading = false
-      state.profile = action.payload
-      state.error = ''
-    })
+      state.isLoading = false;
+      state.profile = action.payload;
+      state.error = "";
+    });
     builder.addCase(updateProfile.rejected, (state, action) => {
-      state.isLoading = false,
-      state.error = action.payload
-    })
-  }
-})
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+  },
+});
 
-export default profileSlice.reducer
+export default profileSlice.reducer;
