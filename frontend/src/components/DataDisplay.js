@@ -1,93 +1,123 @@
-import React, { useState, useEffect } from 'react';
-import './DataDisplay.css'; // Import your CSS file
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import navigate
+import "./DataDisplay.css"; // Import your CSS file
+import axios from "axios";
 
-function DataDisplay() {
-  const [clientName, setClientName] = useState('');
-  const [amount, setAmount] = useState(0);
-  const [price, setPrice] = useState(0.0);
-  const [inState, setInState] = useState(true);
-  const [previousClient, setPreviousClient] = useState(false);
-  const [generatedProfitMargin, setGeneratedProfitMargin] = useState(null);
-  const [clientHistory, setClientHistory] = useState([]);
+function FuelQuoteTable() {
+  const jsonData = [
+    {
+      "amount": 3,
+      "unitPrice": 12.5,
+      "totalPrice": 37.5,
+      "deliveryDate": "2023-09-22T00:00:00.000Z",
+      "deliveryAddress": "123 Main Street, City, State"
+    },
+    {
+      "amount": 5,
+      "unitPrice": 11.75,
+      "totalPrice": 58.75,
+      "deliveryDate": "2023-09-23T00:00:00.000Z",
+      "deliveryAddress": "456 Elm Street, City, State"
+    },
+    {
+      "amount": 2,
+      "unitPrice": 10.0,
+      "totalPrice": 20.0,
+      "deliveryDate": "2023-09-24T00:00:00.000Z",
+      "deliveryAddress": "789 Oak Avenue, City, State"
+    },
+    {
+      "amount": 4,
+      "unitPrice": 12.0,
+      "totalPrice": 48.0,
+      "deliveryDate": "2023-09-25T00:00:00.000Z",
+      "deliveryAddress": "101 Pine Road, City, State"
+    }
+  ];
 
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState(jsonData);
+  const navigate = useNavigate(); // Initialize the navigate function
 
-  const handleExit = (e) => {
-    alert("Wont actually work like this.. not authenticated..")
-    navigate('/');
-
-  }
-  const handleEntry = (e) => {
-    navigate('/fuel');
-
-  }
   useEffect(() => {
-    // Simulate fetching client data and profit margin from an API or database
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:4001/api/printClientData');
-        const data = response.data;
-  
-        console.log('Fetched Data:', data); // Debugging: Log the entire data object
-  
-        setAmount(data.amount);
-        setClientHistory(data.clientHistory.map(item => item.toString()));
-        setClientName(data.clientName);
-        setGeneratedProfitMargin(data.generatedProfitMargin);
-        setInState(data.inState);
-        setPreviousClient(data.previousClient);
-        setPrice(data.price);
-   // Convert each item to a string
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-  
-    fetchData();
+    setLoading(false);
   }, []);
-  
-  
+
+  useEffect(() => {
+    // Filter data based on the search term
+    const filteredResults = jsonData.filter((item) =>
+      item.deliveryDate.includes(searchTerm)
+    );
+    setFilteredData(filteredResults);
+  }, [searchTerm]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleExit = () => {
+    navigate("/");
+    // Add functionality to exit here
+  };
+
+  const handleDisplayData = () => {
+    navigate("/fuel"); // Use the navigate function to navigate to "/display"
+    // Add functionality to display data here
+  };
+
   return (
     <div className="container">
-        <h2>Data Display</h2>
-        <div className="data-item">
-          <strong>Client Name:</strong> {clientName}
-        </div>
-        <div className="data-item">
-          <strong>Amount or Number:</strong> {amount}
-        </div>
-        <div className="data-item">
-          <strong>Price:</strong> {price}
-        </div>
-        <div className="data-item">
-          <strong>In State:</strong> {inState ? 'True' : 'False'}
-        </div>
-        <div className="data-item">
-          <strong>Previous Client:</strong> {previousClient ? 'True' : 'False'}
-        </div>
-        <div className="data-item">
-          <strong>Profit Margin:</strong>{' '}
-          {generatedProfitMargin !== null ? generatedProfitMargin.toFixed(2) : 'N/A'}
-        </div>
-        <div className="data-item">
-          <strong>Client History:</strong>
-          <ul>
-            {clientHistory.map((historyItem, index) => (
-              <li key={index}>{historyItem}</li>
-            ))}
-          </ul>
-        </div>
-     
-      <div className="fuel-button-container">
-        <button className="fuel-button" onClick={handleEntry}>Head to Fuel</button>
+      <h2>Fuel Quote History</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Search by Delivery Date"
+          onChange={handleSearch}
+        />
       </div>
+      {!loading ? (
+        <table>
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Unit Price</th>
+              <th>Total Price</th>
+              <th>Delivery Date</th>
+              <th>Delivery Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.amount}</td>
+                <td>${item.unitPrice.toFixed(2)}</td>
+                <td>${item.totalPrice.toFixed(2)}</td>
+                <td>{item.deliveryDate}</td>
+                <td>{item.deliveryAddress}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>Loading data...</p>
+      )}
+
+      {/* Exit button */}
       <div className="exit-button-container1">
-        <button className="exit-button1" onClick={handleExit}>Exit</button>
+        <button className="exit-button1" onClick={handleExit}>
+          Exit
+        </button>
+      </div>
+
+      {/* Display Data button */}
+      <div className="display-data-button-container">
+        <button className="display-data-button" onClick={handleDisplayData}>
+          Head to Fuel
+        </button>
       </div>
     </div>
   );
 }
 
-export default DataDisplay;
+export default FuelQuoteTable;

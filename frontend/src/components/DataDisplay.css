@@ -17,74 +17,65 @@ html, body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  width: 100%; /* Make the container as wide as the page */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: linear-gradient(to bottom, blue, purple, black);
+  padding: 20px; /* Add some padding to center content within the container */
 }
 
-/* Style the form */
-form {
+/* Style the table to be as wide as the entire page */
+table {
   width: 100%;
-  max-width: 726px; /* Adjust the maximum width */
-  text-align: center;
-  background-color: #f0f0f0;
-  padding: 20px;
-  margin-bottom: 349px; /* Increase the negative margin */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  max-width: none;
 }
 
-/* Style the input boxes and labels */
-form input[type="number"],
-form input[type="date"],
-form input[type="text"],
-form p {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  margin: 5px 0;
-  color: grey; /* Text color for input fields and labels */
-}
-
-/* Style the submit button */
-form button[type="submit"]{
-  display: inline-block;
-  background: #800080;
+/* Style the table headers */
+table th {
+  background-color: #4B0082;
   color: white;
-  border: none;
+  padding: 10px;
+}
+
+/* Style the table cells */
+table td {
+  padding: 10px;
+}
+
+/* Add a hover effect for table rows */
+table tbody tr:hover {
+  background-color: #800080;
+  color: white;
+}
+
+/* Style the exit button container */
+.exit-button-container1 {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Adjust the right value to position the button */
+  z-index: 999;
   border-radius: 4px;
-  min-width: 30px;
-  padding: 10px 20px;
-  margin-top: 20px;
-  width: 100%;
+  border: none;
+  background: none;
+}
+
+/* Style the exit button */
+.exit-button1 {
+  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  color: white;
+  border: 1px solid black; /* Add a black border */
+  border-radius: 4px;
+  padding: 0.5em 1em;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-
-
-
-/* Add a hover effect for the button */
-form button[type="submit"]:hover {
-  background: grey; /* Change the background color on hover */
+/* Add a hover effect for the exit button */
+.exit-button1:hover {
+  background: #800080; /* Change the background color on hover */
 }
 
-/* Position the exit button container */
-.exit-button-container{
-  position: fixed;
-  top: 2em;
-  right: 2em; /* Adjust the right value to move the button rightward */
-  z-index: 999;
-  border-radius: 4px;
-  border: 1px solid black;
-  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
-}
-
-
-/* Position the display data button container */
-.fuel-button-container{
+/* Style the display data button container */
+.display-data-button-container {
   position: fixed;
   top: 3%;
   right: calc(40% + 30px); /* Adjust the right value to move it closer to the exit button */
@@ -92,7 +83,7 @@ form button[type="submit"]:hover {
 }
 
 /* Style the display data button */
-.fuel-button{
+.display-data-button {
   background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
   color: white;
   border: 1px solid black; /* Add a black border */
@@ -103,6 +94,6 @@ form button[type="submit"]:hover {
 }
 
 /* Add a hover effect for the display data button */
-.fuel-data-button:hover{
+.display-data-button:hover {
   background: #800080; /* Change the background color on hover */
 }
