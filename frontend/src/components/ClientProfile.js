@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './ClientProfile.css';
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";    
 import { updateProfile } from "../redux/slices/profileSlice";
 import { useNavigate } from "react-router-dom";
 
