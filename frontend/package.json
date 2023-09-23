@@ -1,8 +1,9 @@
 {
   "name": "my-react-app",
   "version": "0.1.0",
-  "private": true, #project is private and not published on a public registry 
-  #Define project dependencies and their versions
+  "private": true,  // Indicates that this project is intended to be private and not published on a public registry.
+
+  // Define project dependencies and their versions.
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
@@ -16,22 +17,24 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
-  # Define project-specfifc scripts for tasks like starting, building and
-  # testing the application 
+
+  // Define project-specific scripts for tasks like starting, building, and testing the application.
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  # Configure ESLint settings, specifying rule extensions for the project
+
+  // Configure ESLint settings, specifying rule extensions for the project.
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
   },
-  # Define browser compatibility settings for prodcution and development 
+
+  // Define browser compatibility settings for production and development.
   "browserslist": {
     "production": [
       ">0.2%",
