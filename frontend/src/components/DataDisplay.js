@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import navigate
 import "./DataDisplay.css"; // Import your CSS file
-import axios from "axios";
+import axios from "axios";    
 
 function FuelQuoteTable() {
   const jsonData = [
