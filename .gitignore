@@ -1,3 +1,4 @@
 
+node_modules
 */node_modules    # contains Javascript libraries and dependencies
 backend/__pycache__  # contains JavaScript libraries and dependencies.
