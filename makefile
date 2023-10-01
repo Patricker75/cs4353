@@ -4,5 +4,5 @@ client:
 
 server:
 	echo 'Starting Server'
-	python ./backend/main.py
+	npm run start --prefix backend
 
