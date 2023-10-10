@@ -1,10 +1,16 @@
 import express, { json } from 'express';
 import cors from 'cors';
+import routes from './routes/routes';
 
 const app = express();
 
 app.use(json());
 app.use(cors());
+
+// Bind the routes defined in routes/index.js to application
+for (let index in routes) {
+  app.use(routes[index])
+}
 
 const PORT = 4001;
 
