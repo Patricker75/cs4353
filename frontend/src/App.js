@@ -8,6 +8,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import DataDisplay from "./components/DataDisplay";
 import { ClientProfile } from "./components/ClientProfile";
 import NavBar from "./components/NavBar";
+
 import './App.css';
 
 const App = () => {
