@@ -1,18 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { createSlice } from '@reduxjs/toolkit';
 
 const clientProfileSlice = createSlice({
   name: 'clientProfile',
   initialState: {
-    name: '',
+    userID: '',
+    name: '', // Add the "name" field
     mainAddress: '',
     auxAddress: '',
     city: '',
-    state: 'Alabama', // Default state
+    state: '',
     zipcode: '',
   },
   reducers: {
-    updateName: (state, action) => {
+    updateUserID: (state, action) => {
+      state.userID = action.payload;
+    },
+    updateName: (state, action) => { // Add the "updateName" reducer
       state.name = action.payload;
     },
     updateMainAddress: (state, action) => {
@@ -34,7 +37,8 @@ const clientProfileSlice = createSlice({
 });
 
 export const {
-  updateName,
+  updateUserID,
+  updateName, // Add the "updateName" action
   updateMainAddress,
   updateAuxAddress,
   updateCity,

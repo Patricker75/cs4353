@@ -1,38 +1,82 @@
-// profileRouter.js
 const express = require('express');
 const router = express.Router();
 
 // Simulated database for storing user profiles
 const profiles = {};
 
-// Create a route to get the user's profile (GET)
-router.get('/api/profile', async (req, res) => {
-  // Get the user ID from the request object
-  const userId = req.user;
+// Initialize the profiles object with a sample user profile
+profiles['yourUserId'] = {
+  name: '',
+  mainAddress: '',
+  auxAddress: '',
+  city: '',
+  state: '',
+  zipcode: '',
+};
 
-  // Get the user's profile from the database
-  const profile = profiles[userId];
-
-  // Send the user's profile in the response
-  res.status(200).json(profile);
-});
-
-// Create a route to update the user's profile (PUT)
 router.put('/api/profile', async (req, res) => {
-  // Get the user ID from the request object
-  const userId = req.user;
+  try {
+    // Get the user ID from the request data
+    const userId = req.body.userID;
 
-  // Get the user's profile from the database
-  const profile = profiles[userId];
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID not provided in the request.' });
+    }
 
-  // Update the profile with the request body
-  Object.assign(profile, req.body);
+    // Extract profile data from the request data
+    const userProfileData = req.body.profileData;
 
-  // Save the updated profile to the database
-  profiles[userId] = profile;
+    // Ensure that the profile for the user exists
+    if (!profiles[userId]) {
+      profiles[userId] = {
+        name: '',
+        mainAddress: '',
+        auxAddress: '',
+        city: '',
+        state: '',
+        zipcode: '',
+      };
+    }
 
-  // Send a success response
-  res.status(200).json({ message: 'Profile updated successfully' });
+    console.log('');
+    console.log('**************************************');
+    console.log('');
+    console.log('Received profile data:');
+    console.log('User ID:', userId);
+
+    // Log each specific change to the profile data
+    if (userProfileData.name) {
+      profiles[userId].name = userProfileData.name;
+      console.log('Updated name:', userProfileData.name);
+    }
+    if (userProfileData.mainAddress) {
+      profiles[userId].mainAddress = userProfileData.mainAddress;
+      console.log('Updated mainAddress:', userProfileData.mainAddress);
+    }
+    if (userProfileData.auxAddress) {
+      profiles[userId].auxAddress = userProfileData.auxAddress;
+      console.log('Updated auxAddress:', userProfileData.auxAddress);
+    }
+    if (userProfileData.city) {
+      profiles[userId].city = userProfileData.city;
+      console.log('Updated city:', userProfileData.city);
+    }
+    if (userProfileData.state) {
+      profiles[userId].state = userProfileData.state;
+      console.log('Updated state:', userProfileData.state);
+    }
+    if (userProfileData.zipcode) {
+      profiles[userId].zipcode = userProfileData.zipcode;
+      console.log('Updated zipcode:', userProfileData.zipcode);
+    }
+    console.log('');
+    console.log('**************************************');
+
+    // Send a success response
+    res.status(200).json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error.' });
+  }
 });
 
 module.exports = router;
