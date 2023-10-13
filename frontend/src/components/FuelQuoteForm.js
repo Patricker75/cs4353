@@ -1,139 +1,91 @@
-import React, { useState, useEffect } from "react";
-import "./FuelQuoteForm.css"; // Import your CSS file   
-import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import Axios
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  updateAmount,
+  updateUnitPrice,
+  updateTotalPrice,
+  updateDeliveryDate,
+  updateFuelQuote
+
+} from '../redux/fuelQuoteSlice';
 
 function FuelQuoteForm() {
-  const today = (new Date()).toISOString().split('T')[0];
+  // Use useSelector to access the current fuelQuote state
+  const fuelQuote = useSelector((state) => state.fuelQuote);
+  const dispatch = useDispatch();
 
-  const [amount, setAmount] = useState(1);
-  const [unitPrice, setUnitPrice] = useState(10);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [deliveryDate, setDeliveryDate] = useState(today);
-
-  const [generatedProfitMargin, setGeneratedProfitMargin] = useState(null);
-
-  const address = useSelector((state) => state.profile.profile.mainAddress);
-  const navigate = useNavigate();
-  
   useEffect(() => {
-    setTotalPrice(unitPrice * amount)
-  }, [amount])
+    // Calculate the total price whenever amount or unitPrice changes
+    dispatch(updateTotalPrice());
+  }, [fuelQuote.amount, fuelQuote.unitPrice]);
+
+  const address = '123 Main St';
+  const today = new Date().toISOString().split('T')[0];
+  const generatedProfitMargin = 0.1;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Check if all form fields have values
-    if (!amount) {
-      alert("Please fill out all required fields.");
-      return;
-    }
-
-    try {
-      // Prepare the data to send
-      const dataToSend = {
-      };
-
-      // Send a POST request to the Flask backend
-      const response = await axios.post(
-        "http://localhost:4001/api/updateClientData",
-        dataToSend
-      );
-
-      if (response.status === 200) {
-        console.log("Data updated successfully.");
-        // You can handle a successful response here if needed
-      } else {
-        console.error("Failed to update data.");
-        // Handle failure if needed
-      }
-    } catch (error) {
-      console.error("Error updating data:", error);
-      // Handle the error if needed
-    }
-    alert("Has been submitted or tried");
-  };
-
-  const handleExit = (e) => {
-    alert("Won't actually work like this... not authenticated..");
-    navigate("/");
-  };
-
-  const handleDisplayData = (e) => {
-    navigate("/display");
+    // You can dispatch the submitFuelQuote action or any other actions you need
+    // dispatch(submitFuelQuote(fuelQuote));
   };
 
   return (
     <div className="container">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="amount">Amount to Request:</label>
-            <input
-              type="number"
-              id="amount"
-              placeholder="Amount or Number"
-              value={amount}
-              onChange={(e) => setAmount(parseInt(e.target.value))}
-              min='1'
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="amount">Amount to Request:</label>
+          <input
+            type="number"
+            id="amount"
+            placeholder="Amount or Number"
+            value={fuelQuote.amount}
+            onChange={(e) => dispatch(updateAmount(parseInt(e.target.value)))}
+            min="1"
+            required
+          />
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="address">Delivery Address:</label>
-            <p>{address}</p>
-          </div>
+        <div className="form-group">
+          <label htmlFor="address">Delivery Address:</label>
+          <p>{address}</p>
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="deliveryDate">Delivery Date</label>
-            <input
-              type="date"
-              name="deliveryDate"
-              id="deliveryDate"
-              value={deliveryDate}
-              onChange={(evt) => setDeliveryDate(evt)}
-              min={today}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="deliveryDate">Delivery Date</label>
+          <input
+            type="date"
+            name="deliveryDate"
+            id="deliveryDate"
+            value={fuelQuote.deliveryDate}
+            onChange={(evt) => dispatch(updateDeliveryDate(evt.target.value))}
+            min={today}
+          />
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="unitPrice">Price per Gallon:</label>
-            <p>${unitPrice}</p>
-          </div>
+        <div className="form-group">
+          <label htmlFor="unitPrice">Price per Gallon:</label>
+          <p>${fuelQuote.unitPrice}</p>
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="unitPrice">Total:</label>
-            <p>${totalPrice}</p>
-          </div>
+        <div className="form-group">
+          <label htmlFor="unitPrice">Total:</label>
+          <p>${fuelQuote.totalPrice}</p>
+        </div>
 
-          <div className="form-group">
-            <button type="submit" onClick={handleSubmit}>
-              Submit
-            </button>
-          </div>
-          <div className="profit-button">
-            {generatedProfitMargin !== null && (
-              <div className="result">
-                <p>Profit Margin: {generatedProfitMargin.toFixed(2)}</p>
-              </div>
-            )}
-          </div>
-        </form>
+        <div className="form-group">
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
 
-      {/* Exit button */}
-      <div className="exit-button-container1">
-        <button className="exit-button1" onClick={handleExit}>
-          Exit
-        </button>
-      </div>
-
-      {/* Display Data button */}
-      <div className="display-data-button-container">
-        <button className="display-data-button" onClick={handleDisplayData}>
-          Display Data
-        </button>
-      </div>
+        <div className="profit-button">
+          {generatedProfitMargin !== null && (
+            <div className="result">
+              <p>Profit Margin: {generatedProfitMargin.toFixed(2)}</p>
+            </div>
+          )}
+        </div>
+      </form>
     </div>
   );
 }
