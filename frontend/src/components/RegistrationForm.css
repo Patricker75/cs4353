@@ -1,5 +1,4 @@
 /* Reset default styles */
-
 #my-black {
   color: black;
 }
@@ -132,6 +131,7 @@ body {
 }
 
 /* Style the login link */
-.form .login-link {
-  color: black;
+.form .login-link a {
+  color: white;
+  text-decoration: none; /* Remove underlines from links */
 }

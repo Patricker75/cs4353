@@ -1,82 +1,77 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import navigate
-import "./DataDisplay.css"; // Import your CSS file
-import axios from "axios";    
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { updateFuelQuoteHistory } from "../redux/historySlice";
+import "./DataDisplay.css";
 
 function FuelQuoteTable() {
-  const jsonData = [
-    {
-      "amount": 3,
-      "unitPrice": 12.5,
-      "totalPrice": 37.5,
-      "deliveryDate": "2023-09-22T00:00:00.000Z",
-      "deliveryAddress": "123 Main Street, City, State"
-    },
-    {
-      "amount": 5,
-      "unitPrice": 11.75,
-      "totalPrice": 58.75,
-      "deliveryDate": "2023-09-23T00:00:00.000Z",
-      "deliveryAddress": "456 Elm Street, City, State"
-    },
-    {
-      "amount": 2,
-      "unitPrice": 10.0,
-      "totalPrice": 20.0,
-      "deliveryDate": "2023-09-24T00:00:00.000Z",
-      "deliveryAddress": "789 Oak Avenue, City, State"
-    },
-    {
-      "amount": 4,
-      "unitPrice": 12.0,
-      "totalPrice": 48.0,
-      "deliveryDate": "2023-09-25T00:00:00.000Z",
-      "deliveryAddress": "101 Pine Road, City, State"
-    }
-  ];
-
-  const [loading, setLoading] = useState(false);
+  const fuelQuoteHistory = useSelector((state) => state.history.fuelQuoteHistory);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredData, setFilteredData] = useState(jsonData);
-  const navigate = useNavigate(); // Initialize the navigate function
+  const [filteredData, setFilteredData] = useState(fuelQuoteHistory);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false); // Initially not loading
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    // Filter data based on the search term
-    const filteredResults = jsonData.filter((item) =>
-      item.deliveryDate.includes(searchTerm)
-    );
-    setFilteredData(filteredResults);
-  }, [searchTerm]);
+    // Ensure the Redux store is populated at the beginning
+    if (fuelQuoteHistory.length === 0) {
+      // Fetch or populate your initial data here and dispatch it
+      // For example, dispatch(updateFuelQuoteHistory(initialMockData));
+    }
+  }, [dispatch, fuelQuoteHistory]);
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const term = e.target.value;
+
+    if (term !== searchTerm) {
+      setSearchTerm(term);
+
+      setLoading(true); // Show the loading UI
+
+      setTimeout(() => {
+        if (term) {
+          const filteredResults = fuelQuoteHistory.filter((item) =>
+            item.deliveryAddress.toLowerCase().includes(term.toLowerCase())
+          );
+          setFilteredData(filteredResults);
+        } else {
+          setFilteredData(fuelQuoteHistory);
+        }
+        
+        // Delay for 0.85 seconds before hiding the loading UI
+        setTimeout(() => {
+          setLoading(false);
+        }, 850);
+      }, 800); // Delay of 0.8 seconds
+    }
   };
 
   const handleExit = () => {
     navigate("/");
-    // Add functionality to exit here
-  };
+  }
 
   const handleDisplayData = () => {
-    navigate("/fuel"); // Use the navigate function to navigate to "/display"
-    // Add functionality to display data here
-  };
+    navigate("/fuel");
+  }
 
   return (
-    <div className="container">
-      <h2>Fuel Quote History</h2>
+    <div className="container2">
+      {loading && (
+        <div className="loading-ui">
+          <p>Loading data...</p>
+        </div>
+      )}
+      <h2 className="search-heading">Fuel Quote History</h2>
       <div>
         <input
           type="text"
-          placeholder="Search by Delivery Date"
+          placeholder="Search by Delivery Address"
+          value={searchTerm}
           onChange={handleSearch}
+          className="search-input"
         />
       </div>
-      {!loading ? (
+      {filteredData.length > 0 && (
         <table>
           <thead>
             <tr>
@@ -99,12 +94,11 @@ function FuelQuoteTable() {
             ))}
           </tbody>
         </table>
-      ) : (
-        <p>Loading data...</p>
       )}
-
     </div>
   );
 }
 
 export default FuelQuoteTable;
+
+
