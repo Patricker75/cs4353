@@ -1,28 +1,28 @@
 {
-  "name": "backend",              // Name of the project or package
-  "version": "1.0.0",             // Version of the project
-  "description": "",              // Description of the project (currently empty)
-  "main": "index.js",             // Entry point of the project
-  "scripts": {                     // Custom npm scripts
-    "test": "echo \"Error: no test specified\" && exit 1", // A test script (currently echoes an error)
-    "build": "rimraf dist && babel src --out-dir dist --copy-files", // A build script that uses Babel to compile code
-    "start": "nodemon --exec babel-node src/app.js" // A start script that uses nodemon to run the application with Babel
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && babel src --out-dir dist --copy-files",
+    "start": "nodemon --exec babel-node src/app.js"
   },
-  "keywords": [],                
-  "license": "ISC",               // License type for the project
-  "dependencies": {               // Project's runtime dependencies
-    "@babel/cli": "^7.23.0",      // Babel command-line interface
-    "@babel/core": "^7.23.0",     // Babel core package
-    "@babel/node": "^7.22.19",    // Babel Node.js integration
-    "@babel/plugin-proposal-class-properties": "^7.18.6", // Babel plugin for class properties
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7", // Babel plugin for object spread/rest
-    "@babel/preset-env": "^7.22.20",  // Babel preset for modern JavaScript
-    "cors": "^2.8.5",             // CORS (Cross-Origin Resource Sharing) middleware for Express
-    "express": "^4.18.2",         // Express.js web framework
-    "express-promise-router": "^4.1.1", // Router for Express that supports promises
-    "kill-port": "^2.0.1",        // Utility to kill a process running on a specific port
-    "nodemon": "^3.0.1",          // Utility to automatically restart Node.js applications
-    "redux-thunk": "^2.4.2",      // Middleware for managing asynchronous actions in Redux
-    "rimraf": "^5.0.5"            // Cross-platform tool for removing files and directories
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.0",
+    "@babel/node": "^7.22.19",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.22.20",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-promise-router": "^4.1.1",
+    "kill-port": "^2.0.1",
+    "nodemon": "^3.0.1",
+    "redux-thunk": "^2.4.2",
+    "rimraf": "^5.0.5"
   }
 }
