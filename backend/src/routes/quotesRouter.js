@@ -1,52 +1,13 @@
-const express = require('express');
-const router = express.Router();
+// quotesRouter.js
+import { Router } from 'express';
+import { handleNewQuote, handleGetHistory } from '../handlers/quotesHandler';
 
-// Simulated database for storing fuel quotes
-const quotes = [];
+const router = Router();
 
 // Create a route to create a new fuel quote (POST)
-router.post('/api/quotes/new', async (req, res) => {
-  try {
-    // Get the fuel quote data from the request body
-    const requestData = req.body.requestData; // Access the 'requestData' object
-    const userId = req.body.userID;
-    
-    const newFuelQuote = {
-      userID: userId,
-      amount: requestData.amount,
-      unitPrice: requestData.unitPrice,
-      deliveryDate: requestData.deliveryDate,
-      mainAddress: requestData.mainAddress,
-    };
-    quotes.push(newFuelQuote);
-    if (!userId) {
-      return res.status(400).json({ error: 'User ID not provided in the request.' });
-    }
-
-    // Log the updated data
-    console.log("");
-    console.log('----------------------------------');
-    console.log('Received new fuel data');
-    console.log('User ID:', userId);
-    console.log('Amount:', requestData.amount); // Use 'requestData.amount'
-    console.log('Unit Price:', requestData.unitPrice); // Use 'requestData.unitPrice'
-    console.log('Delivery Date:', requestData.deliveryDate); // Use 'requestData.deliveryDate'
-    console.log('Main Address:', requestData.mainAddress); // Use 'requestData.mainAddress'
-    console.log('----------------------------------');
-    console.log("");
-
-    res.status(200).json({ message: 'New fuel data stored' });
-  } catch (error) {
-    // Handle any errors that may occur during data addition
-    console.error('Error adding fuel quote:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+router.post('/api/quotes/new', handleNewQuote);
 
 // Create a route to retrieve fuel quote history (GET)
-router.get('/api/quotes/history', async (req, res) => {
-  // Send the fuel quote history in the response
-  res.status(200).json(quotes);
-});
+router.get('/api/quotes/history', handleGetHistory);
 
-module.exports = router;
+export default router;

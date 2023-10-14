@@ -1,9 +1,12 @@
-import authRouter from './authRouter';
-import profileRouter from './profileRouter';
-import quotesRouter from './quotesRouter';
+// This module exports an array of Express routers.
+// This is a common way to organize your routes in an Express application.
 
-export default [
+import authRouter from './authRouter'; // Import the authentication router.
+import profileRouter from './profileRouter'; // Import the user profile router.
+import quotesRouter from './quotesRouter'; // Import the quote router.
+
+export default [ // Export an array of the three routers.
   authRouter,
   profileRouter,
   quotesRouter
-] 
+];
