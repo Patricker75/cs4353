@@ -2,7 +2,7 @@
 // This file defines the Express router for the `/api/auth` endpoint.
 // This router handles user login, logout, and status.
 import { Router } from 'express';
-import { handleLogin, handleLogout, handleStatus } from '../handlers/authHandler';
+import { handleLogin, handleLogout, handleRegister, handleStatus } from '../handlers/authHandler';
 
 const router = Router();
 
@@ -14,5 +14,8 @@ router.post('/api/auth/logout', handleLogout);
 
 // Create a route to get the current user's status (GET)
 router.get('/api/auth/status', handleStatus);
+
+// Create a route to handle user registration (POST)
+router.post('/api/auth/register', handleRegister);
 
 export default router;
