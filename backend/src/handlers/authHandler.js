@@ -1,44 +1,44 @@
 // Simulated database for storing user information
 const users = {
-  'john.doe@example.com': {
+  "john.doe@example.com": {
     id: 1,
-    name: 'John Doe',
-    password: 'password123',
+    name: "John Doe",
+    password: "password123",
   },
 };
 
 export const handleLogin = async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const user = users[email];
-  if (!user) {
-    res.status(401)
-    res.send({ message: 'Invalid email or password' });
-    return;
+    const user = users[email];
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    if (password !== user.password) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Set the user ID in the request object
+    req.user = user.id;
+
+    // Send a success response
+    return res.status(200).json({ message: "Login successful" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
-
-  if (password !== user.password) {
-    res.status(401)
-    res.send({ message: 'Invalid email or password' });
-    return;
-  }
-
-  // Set the user ID in the request object
-  req.user = user.id;
-
-  // Send a success response
-  res.status(200)
-  res.send({ message: 'Login successful' });
-}
+};
 
 export const handleLogout = async (req, res) => {
   // Clear the user ID in the request object
   req.user = undefined;
 
   // Send a success response
-  res.status(200)
-  res.send({ message: 'Logout successful' });
-}
+  res.status(200);
+  res.send({ message: "Logout successful" });
+};
 
 export const handleStatus = async (req, res) => {
   // Get the user ID from the request object
@@ -46,8 +46,8 @@ export const handleStatus = async (req, res) => {
 
   // Check if the user is logged in
   if (!userId) {
-    res.status(401)
-    res.send({ message: 'User is not logged in' });
+    res.status(401);
+    res.send({ message: "User is not logged in" });
     return;
   }
 
@@ -55,6 +55,35 @@ export const handleStatus = async (req, res) => {
   const user = users[userId];
 
   // Send the user's profile in the response
-  res.status(200)
+  res.status(200);
   res.send(user);
-}
+};
+
+export const handleRegister = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if the email is already in use
+    if (users[email]) {
+      return res.status(409).json({ message: "Email already in use" });
+    }
+
+    // Add the new user to the database (simulated in-memory storage)
+    users[email] = {
+      id: Object.keys(users).length + 1,
+      name: email, // You can change this
+      password: password,
+    };
+
+    // Set the user ID in the request object
+    req.user = users[email].id;
+
+    // Send a success response
+    res.status(201);
+    res.send({ message: "Registration successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.send({ message: "Internal Server Error" });
+  }
+};

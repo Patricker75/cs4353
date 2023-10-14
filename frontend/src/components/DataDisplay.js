@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateFuelQuoteHistory } from "../redux/historySlice";
 import "./DataDisplay.css";
+import axios from 'axios';
+
+function calculateTotalPrice(amount, unitPrice) {
+  return amount * unitPrice;
+}
 
 function FuelQuoteTable() {
   const fuelQuoteHistory = useSelector((state) => state.history.fuelQuoteHistory);
@@ -10,15 +15,27 @@ function FuelQuoteTable() {
   const [filteredData, setFilteredData] = useState(fuelQuoteHistory);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false); // Initially not loading
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Ensure the Redux store is populated at the beginning
-    if (fuelQuoteHistory.length === 0) {
-      // Fetch or populate your initial data here and dispatch it
-      // For example, dispatch(updateFuelQuoteHistory(initialMockData));
+    // Fetch the data from the backend when the component mounts
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://localhost:4001/api/quotes/history');
+        const data = response.data;
+        // Dispatch the fetched data to your Redux store
+        dispatch(updateFuelQuoteHistory(data));
+        setFilteredData(data); // Set the filtered data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [dispatch, fuelQuoteHistory]);
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, [dispatch]);
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -26,23 +43,22 @@ function FuelQuoteTable() {
     if (term !== searchTerm) {
       setSearchTerm(term);
 
-      setLoading(true); // Show the loading UI
+      setLoading(true);
 
       setTimeout(() => {
         if (term) {
           const filteredResults = fuelQuoteHistory.filter((item) =>
-            item.deliveryAddress.toLowerCase().includes(term.toLowerCase())
+            item.mainAddress.toLowerCase().includes(term.toLowerCase())
           );
           setFilteredData(filteredResults);
         } else {
           setFilteredData(fuelQuoteHistory);
         }
         
-        // Delay for 0.85 seconds before hiding the loading UI
         setTimeout(() => {
           setLoading(false);
         }, 850);
-      }, 800); // Delay of 0.8 seconds
+      }, 800);
     }
   };
 
@@ -65,7 +81,7 @@ function FuelQuoteTable() {
       <div>
         <input
           type="text"
-          placeholder="Search by Delivery Address"
+          placeholder="Search by Main Address"
           value={searchTerm}
           onChange={handleSearch}
           className="search-input"
@@ -79,7 +95,7 @@ function FuelQuoteTable() {
               <th>Unit Price</th>
               <th>Total Price</th>
               <th>Delivery Date</th>
-              <th>Delivery Address</th>
+              <th>Main Address</th>
             </tr>
           </thead>
           <tbody>
@@ -87,9 +103,9 @@ function FuelQuoteTable() {
               <tr key={index}>
                 <td>{item.amount}</td>
                 <td>${item.unitPrice.toFixed(2)}</td>
-                <td>${item.totalPrice.toFixed(2)}</td>
+                <td>${calculateTotalPrice(item.amount, item.unitPrice).toFixed(2)}</td>
                 <td>{item.deliveryDate}</td>
-                <td>{item.deliveryAddress}</td>
+                <td>{item.mainAddress}</td>
               </tr>
             ))}
           </tbody>
@@ -100,5 +116,3 @@ function FuelQuoteTable() {
 }
 
 export default FuelQuoteTable;
-
-
