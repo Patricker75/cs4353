@@ -2,7 +2,7 @@
 
 const express = require('express'); // Import the Express framework.
 const cors = require('cors'); // Import the CORS middleware.
-const { json } = require('express'); // Import the `json()` middleware.
+const { json } = require('express'); // Import the `json()` middleware. 
 
 import routes from './routes'; // Import the `routes` module, which contains all of the application's routes.
 
