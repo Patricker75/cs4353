@@ -8,8 +8,7 @@
     "build": "rimraf dist && babel src --out-dir dist --copy-files", // A build script that uses Babel to compile code
     "start": "nodemon --exec babel-node src/app.js" // A start script that uses nodemon to run the application with Babel
   },
-  "keywords": [],                 // Keywords to describe the project (currently empty)
-  "author": "",                   // Author of the project (currently empty)
+  "keywords": [],                
   "license": "ISC",               // License type for the project
   "dependencies": {               // Project's runtime dependencies
     "@babel/cli": "^7.23.0",      // Babel command-line interface
