@@ -1,4 +1,3 @@
-// historySlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialMockData = [
@@ -39,8 +38,8 @@ const historySlice = createSlice({
   },
   reducers: {
     updateFuelQuoteHistory: (state, action) => {
-      // Merge the new data with the existing data
-      state.fuelQuoteHistory = [...state.fuelQuoteHistory, ...action.payload];
+      // Replace the existing data with the new data
+      state.fuelQuoteHistory = action.payload;
     },
   },
 });
@@ -48,4 +47,3 @@ const historySlice = createSlice({
 export const { updateFuelQuoteHistory } = historySlice.actions;
 
 export default historySlice.reducer;
-

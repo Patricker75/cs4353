@@ -1,33 +1,62 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+
 import {
   updateAmount,
   updateUnitPrice,
   updateTotalPrice,
   updateDeliveryDate,
-  updateFuelQuote
-
+  updateFuelQuote,
 } from '../redux/fuelQuoteSlice';
 
+import {
+  updateUserID,
+} from '../redux/clientProfileSlice';
+
 function FuelQuoteForm() {
-  // Use useSelector to access the current fuelQuote state
   const fuelQuote = useSelector((state) => state.fuelQuote);
+  const clientProfile = useSelector((state) => state.clientProfile);
   const dispatch = useDispatch();
 
+  // Dispatch the updateUserID action to set the user's ID when the component loads
   useEffect(() => {
     // Calculate the total price whenever amount or unitPrice changes
     dispatch(updateTotalPrice());
   }, [fuelQuote.amount, fuelQuote.unitPrice]);
 
-  const address = '123 Main St';
-  const today = new Date().toISOString().split('T')[0];
-  const generatedProfitMargin = 0.1;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can dispatch the submitFuelQuote action or any other actions you need
-    // dispatch(submitFuelQuote(fuelQuote));
-  };
+
+    // Create an object with the user's ID and request data to send to the API
+    let jsondata = {
+      userID: clientProfile.userID,
+      requestData: {
+        amount: fuelQuote.amount,
+        unitPrice: fuelQuote.unitPrice,
+        deliveryDate: fuelQuote.deliveryDate,
+        mainAddress: clientProfile.mainAddress,
+      },
+    };
+
+    try {
+      // Send a POST request to the API with the jsondata object
+      const response = await axios.post('http://localhost:4001/api/quotes/new', jsondata);
+
+      // Handle the API response if needed
+      console.log('API response:', response.data);
+
+      // You can dispatch the submitFuelQuote action or any other actions you need
+      // dispatch(submitFuelQuote(fuelQuote));
+    } catch (error) {
+      // Handle errors if the request fails
+      console.error('API request error:', error);
+    }
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  const generatedProfitMargin = 0.1;
 
   return (
     <div className="container">
@@ -47,7 +76,7 @@ function FuelQuoteForm() {
 
         <div className="form-group">
           <label htmlFor="address">Delivery Address:</label>
-          <p>{address}</p>
+          <p>{clientProfile.mainAddress}</p>
         </div>
 
         <div className="form-group">
