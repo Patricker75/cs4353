@@ -9,10 +9,12 @@ export const handleNewQuote = async (req, res) => {
   quotes.push(quoteData);
 
   // Send a success response
-  res.status(200).json({ message: 'New fuel quote created' });
+  res.status(200)
+  res.send({ message: 'New fuel quote created' });
 }
 
 export const handleGetHistory = async (req, res) => {
   // Send the fuel quote history in the response
-  res.status(200).json(quotes);
+  res.status(200)
+  res.send(quotes);
 }
