@@ -13,21 +13,27 @@ export const handleLogin = async (req, res) => {
 
     const user = users[email];
     if (!user) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      res.status(401);
+      res.send({ message: "Invalid email or password" });
+      return;
     }
 
     if (password !== user.password) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      res.status(401);
+      res.send({ message: "Invalid email or password" });
+      return;
     }
 
     // Set the user ID in the request object
     req.user = user.id;
 
     // Send a success response
-    return res.status(200).json({ message: "Login successful" });
+    res.status(200);
+    res.send({ message: "Login successful" });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    res.status(500);
+    res.send({ message: "Internal Server Error" });
   }
 };
 
@@ -65,7 +71,9 @@ export const handleRegister = async (req, res) => {
 
     // Check if the email is already in use
     if (users[email]) {
-      return res.status(409).json({ message: "Email already in use" });
+      res.status(409);
+      res.send({ message: "Email already in use" });
+      return;
     }
 
     // Add the new user to the database (simulated in-memory storage)

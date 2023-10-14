@@ -19,6 +19,7 @@ export const handleProfileUpdate = async (req, res) => {
     if (!userId) {
       res.status(400);
       res.send({ error: "User ID not provided in the request." });
+      return;
     }
 
     // Extract profile data from the request data

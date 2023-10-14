@@ -7,6 +7,13 @@ export const handleNewQuote = async (req, res) => {
     const requestData = req.body.requestData; // Access the 'requestData' object
     const userId = req.body.userID;
 
+    console.log('---------------', userId)
+    if (!userId) {
+      res.status(400);
+      res.send({ error: "User ID not provided in the request." });
+      return;
+    }
+
     const newFuelQuote = {
       userID: userId,
       amount: requestData.amount,
@@ -15,11 +22,6 @@ export const handleNewQuote = async (req, res) => {
       mainAddress: requestData.mainAddress,
     };
     quotes.push(newFuelQuote);
-    if (!userId) {
-      return res
-        .status(400)
-        .json({ error: "User ID not provided in the request." });
-    }
 
     // Log the updated data
     console.log("");

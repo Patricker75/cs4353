@@ -1,155 +1,204 @@
 import {
   handleLogin,
   handleLogout,
+  handleRegister,
   handleStatus,
 } from "../handlers/authHandler";
 
-describe('Test Auth Handlers', () => {
-  test('Test login - valid creds', () => {
+describe("Test Auth Handlers", () => {
+  test("Test login - valid creds", () => {
     const req = {
       body: {
-        email: 'john.doe@example.com',
-        password: 'password123'
-      }
-    }
+        email: "john.doe@example.com",
+        password: "password123",
+      },
+    };
     const res = {
       data: {},
       code: 0,
 
-      status: function(status) {
-        this.code = status
+      status: function (status) {
+        this.code = status;
       },
-      send: function(input) {
-        this.data = input
-      }
-    }
+      send: function (input) {
+        this.data = input;
+      },
+    };
 
-    handleLogin(req, res)
+    handleLogin(req, res);
 
-    expect(res.data.message).toEqual('Login successful')
-  })
+    expect(res.data.message).toEqual("Login successful");
+  });
 
-  test('Test login - invalid password', () => {
+  test("Test login - invalid password", () => {
     const req = {
       body: {
-        email: 'john.doe@example.com',
-        password: 'pa'
-      }
-    }
+        email: "john.doe@example.com",
+        password: "pa",
+      },
+    };
     const res = {
       data: {},
       code: 0,
 
-      status: function(status) {
-        this.code = status
+      status: function (status) {
+        this.code = status;
       },
-      send: function(input) {
-        this.data = input
-      }
-    }
+      send: function (input) {
+        this.data = input;
+      },
+    };
 
-    handleLogin(req, res)
+    handleLogin(req, res);
 
-    expect(res.data.message).toEqual('Invalid email or password')
-  })
+    expect(res.data.message).toEqual("Invalid email or password");
+  });
 
-  test('Test login - invalid email', () => {
+  test("Test login - invalid email", () => {
     const req = {
       body: {
-        email: 'joe.doe@example.com',
-        password: 'password123'
-      }
-    }
+        email: "joe.doe@example.com",
+        password: "password123",
+      },
+    };
     const res = {
       data: {},
       code: 0,
 
-      status: function(status) {
-        this.code = status
+      status: function (status) {
+        this.code = status;
       },
-      send: function(input) {
-        this.data = input
-      }
-    }
+      send: function (input) {
+        this.data = input;
+      },
+    };
 
-    handleLogin(req, res)
+    handleLogin(req, res);
 
-    expect(res.data.message).toEqual('Invalid email or password')
-  })
+    expect(res.data.message).toEqual("Invalid email or password");
+  });
 
-  test('Test status - logged in', () => {
+  test("Test status - logged in", () => {
     const req = {
-      user: 'john.doe@example.com'
-    }
+      user: "john.doe@example.com",
+    };
     const res = {
       user: {},
       code: 0,
 
-      status: function(status) {
-        this.code = status
+      status: function (status) {
+        this.code = status;
       },
-      send: function(input) {
-        this.user = input
-      }
-    }
+      send: function (input) {
+        this.user = input;
+      },
+    };
 
-    handleStatus(req, res)
+    handleStatus(req, res);
 
     let user = {
       id: 1,
-      name: 'John Doe',
-      password: 'password123',
-    }
+      name: "John Doe",
+      password: "password123",
+    };
     // console.log(res)
 
-    expect(res.user).toEqual(user)
-  })
+    expect(res.user).toEqual(user);
+  });
 
-  test('Test status - not logged in', () => {
+  test("Test status - not logged in", () => {
     const req = {
       body: {
-        email: 'joe.doe@example.com',
-        password: 'password123'
-      }
-    }
+        email: "joe.doe@example.com",
+        password: "password123",
+      },
+    };
     const res = {
       data: {},
       code: 0,
 
-      status: function(status) {
-        this.code = status
+      status: function (status) {
+        this.code = status;
       },
-      send: function(input) {
-        this.data = input
-      }
-    }
+      send: function (input) {
+        this.data = input;
+      },
+    };
 
-    handleStatus(req, res)
+    handleStatus(req, res);
 
-    expect(res.data.message).toEqual('User is not logged in')
-  })
+    expect(res.data.message).toEqual("User is not logged in");
+  });
 
-  test('Test logout', () => {
+  test("Test logout", () => {
     const req = {
       body: {
-        email: 'joe.doe@example.com',
-        password: 'password123'
-      }
-    }
+        email: "john.doe@example.com",
+        password: "password123",
+      },
+    };
     const res = {
       data: {},
       code: 0,
 
-      status: function(status) {
-        this.code = status
+      status: function (status) {
+        this.code = status;
       },
-      send: function(input) {
-        this.data = input
-      }
-    }
+      send: function (input) {
+        this.data = input;
+      },
+    };
 
-    handleLogout(req, res)
+    handleLogout(req, res);
 
-    expect(res.data.message).toEqual('Logout successful')
-  })
-})
+    expect(res.data.message).toEqual("Logout successful");
+  });
+
+  test("Test register - used account", () => {
+    const req = {
+      body: {
+        email: "john.doe@example.com",
+        password: "password123",
+      },
+    };
+    const res = {
+      data: {},
+      code: 0,
+
+      status: function (status) {
+        this.code = status;
+      },
+      send: function (input) {
+        this.data = input;
+      },
+    };
+
+    handleRegister(req, res);
+
+    expect(res.data.message).toEqual("Email already in use");
+  });
+
+  test("Test register - new account", () => {
+    const req = {
+      body: {
+        email: "joe.beer@example.com",
+        password: "password123",
+      },
+    };
+    const res = {
+      data: {},
+      code: 0,
+
+      status: function (status) {
+        this.code = status;
+      },
+      send: function (input) {
+        this.data = input;
+      },
+    };
+
+    handleRegister(req, res);
+
+    expect(res.data.message).toEqual("Registration successful");
+  });
+});
