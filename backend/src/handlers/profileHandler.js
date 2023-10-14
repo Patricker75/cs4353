@@ -17,7 +17,8 @@ export const handleProfileUpdate = async (req, res) => {
     const userId = req.body.userID;
 
     if (!userId) {
-      return res.status(400).json({ error: 'User ID not provided in the request.' });
+      res.status(400)
+      res.send({ error: 'User ID not provided in the request.' });
     }
 
     // Extract profile data from the request data
@@ -70,8 +71,10 @@ export const handleProfileUpdate = async (req, res) => {
     console.log('**************************************');
 
     // Send a success response
-    res.status(200).json({ message: 'Profile updated successfully' });
+    res.status(200)
+    res.send({ message: 'Profile updated successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500)
+    res.send({ error: 'Internal server error.' });
   }
 }

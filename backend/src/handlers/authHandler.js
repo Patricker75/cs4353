@@ -12,12 +12,14 @@ export const handleLogin = async (req, res) => {
 
   const user = users[email];
   if (!user) {
-    res.status(401).json({ message: 'Invalid email or password' });
+    res.status(401)
+    res.send({ message: 'Invalid email or password' });
     return;
   }
 
   if (password !== user.password) {
-    res.status(401).json({ message: 'Invalid email or password' });
+    res.status(401)
+    res.send({ message: 'Invalid email or password' });
     return;
   }
 
@@ -25,7 +27,8 @@ export const handleLogin = async (req, res) => {
   req.user = user.id;
 
   // Send a success response
-  res.status(200).json({ message: 'Login successful' });
+  res.status(200)
+  res.send({ message: 'Login successful' });
 }
 
 export const handleLogout = async (req, res) => {
@@ -33,7 +36,8 @@ export const handleLogout = async (req, res) => {
   req.user = undefined;
 
   // Send a success response
-  res.status(200).json({ message: 'Logout successful' });
+  res.status(200)
+  res.send({ message: 'Logout successful' });
 }
 
 export const handleStatus = async (req, res) => {
@@ -42,7 +46,8 @@ export const handleStatus = async (req, res) => {
 
   // Check if the user is logged in
   if (!userId) {
-    res.status(401).json({ message: 'User is not logged in' });
+    res.status(401)
+    res.send({ message: 'User is not logged in' });
     return;
   }
 
@@ -50,5 +55,6 @@ export const handleStatus = async (req, res) => {
   const user = users[userId];
 
   // Send the user's profile in the response
-  res.status(200).json(user);
+  res.status(200)
+  res.send(user);
 }
