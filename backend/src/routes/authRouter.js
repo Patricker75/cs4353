@@ -4,34 +4,34 @@ const router = express.Router();
 
 // Simulated database for storing user information
 const users = {
-  'john.doe@example.com': {
-    id: 1,
-    name: 'John Doe',
-    password: 'password123',
-  },
 };
 
 // Create a route to handle user login (POST)
 router.post('/api/auth/login', async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
+    
+    const user = users[email];
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
 
-  const user = users[email];
-  if (!user) {
-    res.status(401).json({ message: 'Invalid email or password' });
-    return;
+    if (password !== user.password) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Set the user ID in the request object
+    req.user = user.id;
+
+    // Send a success response
+    return res.status(200).json({ message: 'Login successful' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
-
-  if (password !== user.password) {
-    res.status(401).json({ message: 'Invalid email or password' });
-    return;
-  }
-
-  // Set the user ID in the request object
-  req.user = user.id;
-
-  // Send a success response
-  res.status(200).json({ message: 'Login successful' });
 });
+
+
 
 // Create a route to handle user logout (POST)
 router.post('/api/auth/logout', async (req, res) => {
@@ -58,6 +58,34 @@ router.get('/api/auth/status', async (req, res) => {
 
   // Send the user's profile in the response
   res.status(200).json(user);
+});
+
+// Create a route to handle user registration (POST)
+router.post('/api/auth/register', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    // Check if the email is already in use
+    if (users[email]) {
+      return res.status(409).json({ message: 'Email already in use' });
+    }
+    
+    // Add the new user to the database (simulated in-memory storage)
+    users[email] = {
+      id: Object.keys(users).length + 1,
+      name: email, // You can change this
+      password: password,
+    };
+
+    // Set the user ID in the request object
+    req.user = users[email].id;
+
+    // Send a success response
+    return res.status(201).json({ message: 'Registration successful' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 module.exports = router;

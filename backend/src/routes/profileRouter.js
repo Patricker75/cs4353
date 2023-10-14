@@ -14,6 +14,18 @@ profiles['yourUserId'] = {
   zipcode: '',
 };
 
+// Define a route to retrieve a user's profile (GET)
+router.get('/api/profile/', (req, res) => {
+  const userId = req.body.userID;
+
+  if (!userId || !profiles[userId]) {
+    return res.status(404).json({ error: 'User profile not found.' });
+  }
+
+  // Return the user's profile
+  res.status(200).json(profiles[userId]);
+});
+
 router.put('/api/profile', async (req, res) => {
   try {
     // Get the user ID from the request data

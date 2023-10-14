@@ -1,4 +1,3 @@
-// quotesRouter.js
 const express = require('express');
 const router = express.Router();
 
@@ -7,14 +6,41 @@ const quotes = [];
 
 // Create a route to create a new fuel quote (POST)
 router.post('/api/quotes/new', async (req, res) => {
-  // Get the fuel quote data from the request body
-  const quoteData = req.body;
+  try {
+    // Get the fuel quote data from the request body
+    const requestData = req.body.requestData; // Access the 'requestData' object
+    const userId = req.body.userID;
+    
+    const newFuelQuote = {
+      userID: userId,
+      amount: requestData.amount,
+      unitPrice: requestData.unitPrice,
+      deliveryDate: requestData.deliveryDate,
+      mainAddress: requestData.mainAddress,
+    };
+    quotes.push(newFuelQuote);
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID not provided in the request.' });
+    }
 
-  // Add the new fuel quote to the database
-  quotes.push(quoteData);
+    // Log the updated data
+    console.log("");
+    console.log('----------------------------------');
+    console.log('Received new fuel data');
+    console.log('User ID:', userId);
+    console.log('Amount:', requestData.amount); // Use 'requestData.amount'
+    console.log('Unit Price:', requestData.unitPrice); // Use 'requestData.unitPrice'
+    console.log('Delivery Date:', requestData.deliveryDate); // Use 'requestData.deliveryDate'
+    console.log('Main Address:', requestData.mainAddress); // Use 'requestData.mainAddress'
+    console.log('----------------------------------');
+    console.log("");
 
-  // Send a success response
-  res.status(200).json({ message: 'New fuel quote created' });
+    res.status(200).json({ message: 'New fuel data stored' });
+  } catch (error) {
+    // Handle any errors that may occur during data addition
+    console.error('Error adding fuel quote:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // Create a route to retrieve fuel quote history (GET)
