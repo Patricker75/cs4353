@@ -1,8 +1,8 @@
 CREATE TABLE logins (
-    username VARCHAR(50),
+    email VARCHAR(50),
     password VARCHAR(100),
 
-    CONSTRAINT pk__logins PRIMARY KEY(username)
+    CONSTRAINT pk__logins PRIMARY KEY(email)
 );
 
 CREATE TABLE users (
@@ -14,11 +14,11 @@ CREATE TABLE users (
     state CHAR(2) NOT NULL,
     zip_code VARCHAR(9) NOT NULL,
     new_customer BOOLEAN,
-    username VARCHAR(50),
+    email VARCHAR(50),
 
     CONSTRAINT pk__users PRIMARY KEY(user_id),
     
-    CONSTRAINT fk__logins FOREIGN KEY(username) REFERENCES logins(username),
+    CONSTRAINT fk__logins FOREIGN KEY(email) REFERENCES logins(email),
 
     CONSTRAINT zip_code__length CHECK (length(zip_code) >= 5)
 );
