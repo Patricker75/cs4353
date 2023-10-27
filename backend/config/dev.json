@@ -1,9 +1,0 @@
-{
-  "db": {
-    "user": "tqqhjfhyxykmlr",
-    "password": "59e04a728eb0f9d311dc65cae858a728279aa0edcc805636e3cb6f559141d939",
-    "host": "ec2-34-236-103-63.compute-1.amazonaws.com",
-    "port": 5432,
-    "database": "do4ik1iq8tmjh"
-  }
-}
