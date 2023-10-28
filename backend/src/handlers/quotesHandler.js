@@ -1,16 +1,33 @@
 // Simulated database for storing fuel quotes
 const quotes = [];
 
+// Custom validation function to check if fuel quote data is valid
+const isFuelQuoteDataValid = (requestData) => {
+  return (
+    requestData &&
+    typeof requestData === 'object' &&
+    typeof requestData.amount === 'number' && requestData.amount > 0 && requestData.amount <= 1000 &&
+    typeof requestData.unitPrice === 'number' && requestData.unitPrice > 0 && requestData.unitPrice <= 10 &&
+    typeof requestData.deliveryDate === 'string' && requestData.deliveryDate.trim() !== '' && requestData.deliveryDate.length <= 255 &&
+    typeof requestData.mainAddress === 'string' && requestData.mainAddress.trim() !== '' && requestData.mainAddress.length <= 255
+  );
+};
+
 export const handleNewQuote = async (req, res) => {
   try {
     // Get the fuel quote data from the request body
     const requestData = req.body.requestData; // Access the 'requestData' object
     const userId = req.body.userID;
 
-    console.log('---------------', userId)
     if (!userId) {
       res.status(400);
       res.send({ error: "User ID not provided in the request." });
+      return;
+    }
+
+    if (!isFuelQuoteDataValid(requestData)) {
+      res.status(400);
+      res.send({ error: "Invalid fuel quote data provided." });
       return;
     }
 
