@@ -1,14 +1,15 @@
--- Removes all constraints from fuel_requests table
-ALTER TABLE fuel_requests DROP CONSTRAINT pk__fuel_requests;
-ALTER TABLE fuel_requests DROP CONSTRAINT fk__users;
+-- Removes all constraints from fuel_request table
+ALTER TABLE fuel_request DROP CONSTRAINT pk__fuel_request;
+ALTER TABLE fuel_request DROP CONSTRAINT fk__profile;
 
--- Removes all constraints from users table
-ALTER TABLE users DROP CONSTRAINT pk__users;
-ALTER TABLE users DROP CONSTRAINT zip_code__length;
+-- Removes all constraints from profile table
+ALTER TABLE profile DROP CONSTRAINT pk__profile;
+ALTER TABLE profile DROP CONSTRAINT fk__profile__login;
+ALTER TABLE profile DROP CONSTRAINT zip_code__length;
 
--- Removes all constraints from logins table
-ALTER TABLE logins DROP CONSTRAINT pk__logins;
+-- Removes all constraints from login table
+ALTER TABLE login DROP CONSTRAINT pk__login;
 
-DROP TABLE fuel_requests;
-DROP TABLE users;
-DROP TABLE logins;
+DROP TABLE fuel_request;
+DROP TABLE profile;
+DROP TABLE login;
