@@ -33,8 +33,6 @@ describe("tests adding a new login", () => {
     expect(result).toEqual(loginId);
     expect(typeof result).toEqual("number");
   });
-
-  it.todo("should not create a new login - non-unique email");
 });
 
 describe("tests getting a login", () => {
