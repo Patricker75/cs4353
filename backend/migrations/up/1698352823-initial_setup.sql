@@ -1,6 +1,7 @@
 CREATE TABLE logins (
     email VARCHAR(50),
     password VARCHAR(100),
+    user_id INT,
 
     CONSTRAINT pk__logins PRIMARY KEY(email)
 );
@@ -14,11 +15,8 @@ CREATE TABLE users (
     state CHAR(2) NOT NULL,
     zip_code VARCHAR(9) NOT NULL,
     new_customer BOOLEAN,
-    email VARCHAR(50),
 
     CONSTRAINT pk__users PRIMARY KEY(user_id),
-    
-    CONSTRAINT fk__logins FOREIGN KEY(email) REFERENCES logins(email),
 
     CONSTRAINT zip_code__length CHECK (length(zip_code) >= 5)
 );
@@ -30,7 +28,11 @@ CREATE TABLE fuel_requests (
     total_price INT NOT NULL,
     delivery_date DATE,
 
-    CONSTRAINT pk__fuel_requests PRIMARY KEY (request_id),
-
-    CONSTRAINT fk__users FOREIGN KEY(customer_id) REFERENCES users(user_id)
+    CONSTRAINT pk__fuel_requests PRIMARY KEY (request_id)
 );
+
+ALTER TABLE logins
+ADD CONSTRAINT fk__users FOREIGN KEY(user_id) REFERENCES users(user_id);
+
+ALTER TABLE fuel_requests
+ADD CONSTRAINT fk__users FOREIGN KEY(customer_id) REFERENCES users(user_id);
