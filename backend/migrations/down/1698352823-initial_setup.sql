@@ -1,6 +1,6 @@
 -- Removes all constraints from fuel_request table
 ALTER TABLE fuel_request DROP CONSTRAINT pk__fuel_request;
-ALTER TABLE fuel_request DROP CONSTRAINT fk__profile;
+ALTER TABLE fuel_request DROP CONSTRAINT fk__fuel_request__profile;
 
 -- Removes all constraints from profile table
 ALTER TABLE profile DROP CONSTRAINT pk__profile;
