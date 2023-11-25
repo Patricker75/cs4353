@@ -29,14 +29,14 @@ export const getProfile = async (userId) => {
   })[0];
 };
 
-export const addProfile = async (profileData) => {
+export const addProfile = async (userId, profileData) => {
   const query = {
     text: `
-    INSERT INTO users(name, address_primary, address_aux, city, state, zip_code)
-    VALUES ($1, $2, $3, $4, $5, $6)
-    RETURNING user_id;
+    INSERT INTO users(user_id, name, address_primary, address_aux, city, state, zip_code)
+    VALUES ($1, $2, $3, $4, $5, $6, $7);
     `,
     values: [
+      userId,
       profileData.name,
       profileData.addressPrimary,
       profileData.addressAux,
@@ -46,9 +46,7 @@ export const addProfile = async (profileData) => {
     ],
   };
 
-  let result = await executeQuery(query);
-
-  return result.rows[0]?.user_id;
+  await executeQuery(query);
 };
 
 export const updateProfile = async (userId, profileData) => {

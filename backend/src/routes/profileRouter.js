@@ -1,10 +1,13 @@
-import { Router } from 'express';
-import { handleGetProfile, handleProfileUpdate } from '../handlers/profileHandler';
+import { Router } from "express";
+import {
+  handleGetProfile,
+  handleUpdateProfile,
+} from "../handlers/profileHandler";
 
 const router = Router();
 
-router.put('/api/profile', handleProfileUpdate);
+router.put("/api/profile", handleUpdateProfile);
 
-router.get('/api/profile', handleGetProfile);
+router.get("/api/profile", handleGetProfile);
 
 export default router;

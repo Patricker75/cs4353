@@ -65,23 +65,14 @@ describe("tests creating a new profile", () => {
   };
 
   it("should create a new user profile", async () => {
-    mockExecuteQuery.mockResolvedValue({
-      rows: [
-        {
-          user_id: userId,
-        },
-      ],
-      command: "",
-      rowCount: 1,
-      oid: 1,
-      fields: [],
-    });
+    mockExecuteQuery.mockResolvedValue();
 
-    let result = await addProfile(profileData);
+    await addProfile(userId, profileData);
 
     expect(mockExecuteQuery).toBeCalledWith(
       expect.objectContaining({
         values: [
+          userId,
           profileData.name,
           profileData.addressPrimary,
           profileData.addressAux,
@@ -91,8 +82,6 @@ describe("tests creating a new profile", () => {
         ],
       })
     );
-    expect(result).toEqual(userId);
-    expect(typeof result).toBe("number");
   });
 });
 
