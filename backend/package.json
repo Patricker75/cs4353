@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf dist && babel src --out-dir dist --copy-files",
     "start": "nodemon --exec babel-node src/app.js",
-    "test": "node node_modules/.bin/jest --coverage"
+    "test": "node node_modules/.bin/jest"
   },
   "keywords": [],
   "license": "ISC",
