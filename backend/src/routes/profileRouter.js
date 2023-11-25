@@ -6,7 +6,7 @@ import {
 
 const router = Router();
 
-router.put("/api/profile", handleUpdateProfile);
+router.post("/api/profile", handleUpdateProfile);
 
 router.get("/api/profile", handleGetProfile);
 

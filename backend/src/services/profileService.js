@@ -6,9 +6,9 @@ export const getProfile = async (userId) => {
     SELECT
       *
     FROM
-      users
+      profile
     WHERE
-      users.user_id = $1
+      profile.user_id = $1
     `,
     values: [userId],
   };
@@ -32,7 +32,7 @@ export const getProfile = async (userId) => {
 export const addProfile = async (userId, profileData) => {
   const query = {
     text: `
-    INSERT INTO users(user_id, name, address_primary, address_aux, city, state, zip_code)
+    INSERT INTO profile(user_id, name, address_primary, address_aux, city, state, zip_code)
     VALUES ($1, $2, $3, $4, $5, $6, $7);
     `,
     values: [
@@ -52,7 +52,7 @@ export const addProfile = async (userId, profileData) => {
 export const updateProfile = async (userId, profileData) => {
   const query = {
     text: `
-    UPDATE users
+    UPDATE profile
     SET
       name = $2,
       address_primary = $3,
