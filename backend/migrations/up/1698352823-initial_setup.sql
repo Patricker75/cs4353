@@ -25,12 +25,12 @@ CREATE TABLE profile (
 
 CREATE TABLE fuel_request (
     request_id INT GENERATED ALWAYS AS IDENTITY,
-    customer_id INT,
-    amount INT NOT NULL,
-    total_price INT NOT NULL,
+    user_id INT,
+    amount DECIMAL(10, 2) NOT NULL,
+    total_price MONEY NOT NULL,
     delivery_date DATE,
 
     CONSTRAINT pk__fuel_request PRIMARY KEY (request_id),
 
-    CONSTRAINT fk__profile FOREIGN KEY(customer_id) REFERENCES profile(user_id)
+    CONSTRAINT fk__fuel_request__profile FOREIGN KEY(user_id) REFERENCES profile(user_id)
 );
