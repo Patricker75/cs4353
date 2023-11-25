@@ -46,7 +46,7 @@ export const handleUpdateProfile = async (req, res) => {
 
     const profileData = req.body;
 
-    let profileExists = (await getUserProfile(userId)) === true;
+    let profileExists = (await getUserProfile(userId)) !== null;
 
     if (profileExists) {
       await updateUserProfile(userId, profileData);
