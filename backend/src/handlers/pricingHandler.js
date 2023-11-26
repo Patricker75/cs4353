@@ -27,9 +27,6 @@ export const handleGetPrice = async (req, res) => {
       return;
     }
 
-    // Parse amount from param string
-    amount = parseInt(amount);
-
     let unitPrice = await calculatePricePerGallon(userId, amount);
     let total = await calculateTotal(amount, unitPrice);
 
