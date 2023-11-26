@@ -72,7 +72,7 @@ describe("tests getting a pricing for a quote", () => {
 
   it("should throw error - invalid amount", async () => {
     mockRequest.params = {
-      amount: amount.toString(),
+      amount: "aaaaa",
     };
 
     await handleGetPrice(mockRequest, mockResponse);

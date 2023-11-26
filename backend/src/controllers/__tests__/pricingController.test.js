@@ -272,7 +272,7 @@ describe("tests price per gallon caluclation based on margin", () => {
   });
 
   it("should throw error - type of amount is not a number", async () => {
-    let amount = "1000";
+    let amount = "aaaa";
 
     try {
       await calculatePricePerGallon(userId, amount);
