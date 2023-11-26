@@ -2,6 +2,7 @@ import {
   addFuelQuote,
   getFuelQuote,
   getQuoteHistory,
+  updateUserStatus,
 } from "../services/quotesServices";
 
 import validateQuote from "../validators/quotesValidator";
@@ -16,6 +17,9 @@ export const createNewFuelQuote = async (userId, requestData) => {
     }
 
     let requestId = await addFuelQuote(userId, requestData);
+
+    // Update user status on successful creation of quote
+    await updateUserStatus(userId);
 
     return requestId;
   } catch (error) {

@@ -12,6 +12,7 @@ describe("tests creating a fuel quote", () => {
   const fuelRequestId = 20;
 
   const mockAddFuelQuote = jest.spyOn(quoteService, "addFuelQuote");
+  const mockUpdateUserStatus = jest.spyOn(quoteService, "updateUserStatus");
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -23,12 +24,14 @@ describe("tests creating a fuel quote", () => {
     };
   });
 
-  it("should create a new fuel quote - valid quote", async () => {
+  it("should create a new fuel quote and update user status - valid quote", async () => {
     mockAddFuelQuote.mockResolvedValue(fuelRequestId);
+    mockUpdateUserStatus.mockResolvedValue();
 
     let result = await createNewFuelQuote(userId, requestData);
 
     expect(mockAddFuelQuote).toBeCalledWith(userId, requestData);
+    expect(mockUpdateUserStatus).toBeCalledWith(userId);
     expect(result).toEqual(fuelRequestId);
     expect(typeof result).toEqual("number");
   });
@@ -42,6 +45,7 @@ describe("tests creating a fuel quote", () => {
     } catch (error) {
       expect(error.message).toEqual("Invalid Quote");
       expect(mockAddFuelQuote).not.toBeCalled();
+      expect(mockUpdateUserStatus).not.toBeCalled();
     }
   });
 });

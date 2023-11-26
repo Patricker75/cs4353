@@ -73,3 +73,15 @@ export const getQuoteHistory = async (userId) => {
     };
   });
 };
+
+export const updateUserStatus = async (userId) => {
+  const query = {
+    text: `
+    UPDATE profile
+    SET returning_customer = true
+    WHERE user_id = $1;`,
+    values: [userId],
+  };
+
+  await executeQuery(query);
+};
