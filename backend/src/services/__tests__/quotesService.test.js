@@ -1,4 +1,9 @@
-import { addFuelQuote, getFuelQuote, getQuoteHistory } from "../quotesServices";
+import {
+  addFuelQuote,
+  getFuelQuote,
+  getQuoteHistory,
+  updateUserStatus,
+} from "../quotesServices";
 
 import * as db from "../../db";
 
@@ -140,5 +145,25 @@ describe("tests getting fuel quote history", () => {
     );
     expect(result).toEqual(requests);
     expect(Array.isArray(result)).toBe(true);
+  });
+});
+
+describe("tests updating customer status on purchase", () => {
+  const userId = 1;
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it("should update a user's status to true", async () => {
+    mockExecuteQuery.mockResolvedValue();
+
+    await updateUserStatus(userId);
+
+    expect(mockExecuteQuery).toBeCalledWith(
+      expect.objectContaining({
+        values: [userId],
+      })
+    );
   });
 });
