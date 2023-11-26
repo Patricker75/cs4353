@@ -80,11 +80,6 @@ describe("tests creating a new fuel quote", () => {
         error: "Invalid Quote",
       })
     );
-    expect(mockResponse.send).toBeCalledWith(
-      expect.objectContaining({
-        error: "Invalid Quote",
-      })
-    );
   });
 });
 
