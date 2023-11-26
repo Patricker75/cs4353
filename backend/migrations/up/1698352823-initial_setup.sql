@@ -14,7 +14,7 @@ CREATE TABLE profile (
     city VARCHAR(100) NOT NULL,
     state CHAR(2) NOT NULL,
     zip_code VARCHAR(9) NOT NULL,
-    new_customer BOOLEAN,
+    returning_customer BOOLEAN DEFAULT FALSE,
 
     CONSTRAINT pk__profile PRIMARY KEY(user_id),
 
