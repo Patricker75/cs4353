@@ -59,7 +59,6 @@ const profileSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(handleProfileUpdate.fulfilled, (state, action) => {
-      console.log(action);
       state.profile = action.payload;
       state.error = "";
     });

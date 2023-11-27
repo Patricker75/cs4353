@@ -14,21 +14,8 @@ const ClientProfile = () => {
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.profile.profile);
 
-  const [profile, setProfile] = useState({
-    name: "",
-    addressPrimary: "",
-    addressAux: null,
-    city: "",
-    state: "",
-    zipCode: -1,
-  });
+  const [profile, setProfile] = useState(userProfile);
   const [formError, setFormError] = useState("");
-
-  useEffect(() => {
-    dispatch(handleProfilGet()).then(() => {
-      setProfile(userProfile);
-    });
-  }, []);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
