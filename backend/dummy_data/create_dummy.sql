@@ -8,19 +8,19 @@ DECLARE
 BEGIN
 	-- Creating dummy logins
 	INSERT INTO login(email, password)
-	VALUES ('user1@email.com', '123password456')
+	VALUES ('user1@email.com', '!!123password456!!')
 	RETURNING id INTO user_id_1;
 
 	INSERT INTO login(email, password)
-	VALUES ('user2@email.com', 'weakpassword$1')
+	VALUES ('user2@email.com', '!!weakpassword$1!!')
 	RETURNING id INTO user_id_2;
 
 	INSERT INTO login(email, password)
-	VALUES ('user3@email.com', 'securitykey123')
+	VALUES ('user3@email.com', '!!securitykey123!!')
 	RETURNING id INTO user_id_3;
 	
 	INSERT INTO login(email, password)
-	VALUES ('user4@email.com', 'password123')
+	VALUES ('user4@email.com', '!!password123!!')
 	RETURNING id INTO user_id_4;
 
 	-- Creating dummy profiles
