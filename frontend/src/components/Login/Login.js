@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import './Login.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import Axios
-import { useSelector, useDispatch } from 'react-redux';
-import { updateEmail, updatePassword, loginSuccess, loginFailure } from '../redux/loginSlice';
+import React, { useState } from "react";
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import Axios
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateEmail,
+  updatePassword,
+  loginSuccess,
+  loginFailure,
+} from "../../redux/loginSlice";
 
 const Login = () => {
   const email = useSelector((state) => state.login.email);
@@ -13,25 +18,28 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:4001/api/auth/login', { email, password });
+      const response = await axios.post(
+        "http://localhost:4001/api/auth/login",
+        { email, password }
+      );
       if (response.status === 200) {
         // Successful login
         const user = response.data;
         dispatch(loginSuccess(user));
-        alert('Login successful');
-        navigate('/profile');
+        alert("Login successful");
+        navigate("/profile");
       } else {
-        alert('Invalid email or password');
+        alert("Invalid email or password");
       }
     } catch (error) {
-      dispatch(loginFailure('Invalid email or password'));
-      alert('Invalid email or password');
+      dispatch(loginFailure("Invalid email or password"));
+      alert("Invalid email or password");
     }
   };
 
   const handleRegister = () => {
-    alert('Sending you to the register page');
-    navigate('/register');
+    alert("Sending you to the register page");
+    navigate("/register");
   };
 
   return (

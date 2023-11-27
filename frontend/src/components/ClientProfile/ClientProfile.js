@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./ClientProfile.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import clientProfileSlice from "../redux/clientProfileSlice";
-import states from "../utils/states";
+import clientProfileSlice from "../../redux/clientProfileSlice";
+import states from "../../utils/states";
 
 import {
   updateUserID,
@@ -13,9 +13,9 @@ import {
   updateCity,
   updateState,
   updateZipcode,
-} from "../redux/clientProfileSlice";
+} from "../../redux/clientProfileSlice";
 
-export const ClientProfile = () => {
+const ClientProfile = () => {
   const dispatch = useDispatch();
   const clientProfile = useSelector((state) => state.clientProfile);
 
@@ -181,3 +181,5 @@ export const ClientProfile = () => {
     </div>
   );
 };
+
+export default ClientProfile;
