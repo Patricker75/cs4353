@@ -9,7 +9,7 @@ import {
   updatePassword,
   loginSuccess,
   loginFailure,
-} from "../../redux/loginSlice";
+} from "../../redux/slices/loginSlice";
 
 const Login = () => {
   const email = useSelector((state) => state.login.email);
@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   const handleRegister = () => {
-    alert("Sending you to the register page");
+    // alert("Sending you to the register page");
     navigate("/register");
   };
 

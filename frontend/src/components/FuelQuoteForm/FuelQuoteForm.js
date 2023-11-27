@@ -10,9 +10,9 @@ import {
   updateTotalPrice,
   updateDeliveryDate,
   updateFuelQuote,
-} from "../../redux/fuelQuoteSlice";
+} from "../../redux/slices/fuelQuoteSlice";
 
-import { updateUserID } from "../../redux/clientProfileSlice";
+import { updateUserID } from "../../redux/slices/clientProfileSlice";
 
 function FuelQuoteForm() {
   const fuelQuote = useSelector((state) => state.fuelQuote);

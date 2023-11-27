@@ -1,43 +1,59 @@
 import "./RegistrationForm.css";
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+import { handleRegisterUser } from "../../redux/slices/authSlice";
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formError, setFormError] = useState("");
 
-  const jsondata = {
-    email: email, // Assuming your email state is named 'email'
-    password: password, // Assuming your password state is named 'password'
+  const validateData = (data) => {
+    if (!data.email) return -1;
+    if (!data.password) return -2;
+
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email))
+      return -1;
+    console.log("IMPLEMENT VERIFYING PASSWORD");
+
+    return 0;
   };
 
-  const handleRegister = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4001/api/auth/register",
-        jsondata,
-        {
-          headers: {
-            "Content-Type": "application/json", // Set the Content-Type header to indicate JSON data
-          },
-        }
-      );
-      if (response.status === 201) {
-        // Successful registration
-        alert("Registration successful");
-        // You can navigate to another page if needed
-      } else if (response.status === 409) {
-        // Email already in use
-        alert("Email already in use");
-      } else {
-        // Handle other errors
-        alert("Registration failed");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Registration failed");
+  const handleRegister = () => {
+    let data = {
+      email,
+      password,
+    };
+
+    let status = validateData(data);
+    if (status === 0) {
+      setFormError("");
+
+      dispatch(handleRegisterUser(data))
+        .unwrap()
+        .then(() => {
+          navigate("/profile", { replace: true });
+        })
+        .catch((error) => {
+          setFormError(error.message);
+        });
+      return;
+    }
+
+    switch (status) {
+      case -1:
+        setFormError("Invalid Email");
+        return;
+      case -2:
+        setFormError("Invalid Password");
+        return;
     }
   };
 
@@ -71,6 +87,7 @@ const RegistrationForm = () => {
           Already have an account? <Link to="/">Login</Link>
         </p>
       </form>
+      <p>{formError}</p>
     </div>
   );
 };
