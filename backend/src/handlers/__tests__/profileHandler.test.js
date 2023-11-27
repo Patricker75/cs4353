@@ -100,6 +100,10 @@ describe("tests creating a new profile", () => {
     profileController,
     "createUserProfile"
   );
+  const mockUpdateUserProfile = jest.spyOn(
+    profileController,
+    "updateUserProfile"
+  );
 
   let mockRequest = {};
   let mockResponse = {};
@@ -139,12 +143,12 @@ describe("tests creating a new profile", () => {
 
   it("should update a profile", async () => {
     mockGetUserProfile.mockResolvedValue(profile);
-    mockCreateUserProfile.mockImplementation();
+    mockUpdateUserProfile.mockImplementation();
 
     await handleUpdateProfile(mockRequest, mockResponse);
 
     expect(mockGetUserProfile).toBeCalledWith(userId);
-    expect(mockCreateUserProfile).toBeCalledWith(userId, profileData);
+    expect(mockUpdateUserProfile).toBeCalledWith(userId, profileData);
     expect(mockResponse.status).toBeCalledWith(200);
     expect(mockResponse.send).toBeCalledWith(
       expect.objectContaining({
