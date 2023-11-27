@@ -1,8 +1,9 @@
+import "./DataDisplay.css";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateFuelQuoteHistory } from "../../redux/historySlice";
-import "./DataDisplay.css";
 import axios from "axios";
 
 function calculateTotalPrice(amount, unitPrice) {

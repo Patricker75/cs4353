@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "./ClientProfile.css";
+
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import clientProfileSlice from "../../redux/clientProfileSlice";

@@ -1,7 +1,8 @@
+import "./RegistrationForm.css";
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./RegistrationForm.css"; // Import your CSS file
-import axios from "axios"; // Import Axios
+import axios from "axios";
 
 const RegistrationForm = () => {
   const [email, setEmail] = useState("");
