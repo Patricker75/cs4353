@@ -41,7 +41,6 @@ const authSlice = createSlice({
       state = initialState;
     });
     builder.addCase(handleRegisterUser.fulfilled, (state, action) => {
-      console.log(action);
       state.userId = action.payload;
       state.error = "";
     });
@@ -54,7 +53,6 @@ const authSlice = createSlice({
       state = initialState;
     });
     builder.addCase(handleLoginUser.fulfilled, (state, action) => {
-      console.log(action);
       state.userId = action.payload;
       state.error = "";
     });
