@@ -10,6 +10,8 @@ import {
   Login,
   NavBar,
   RegistrationForm,
+  RequireAuth,
+  DataLoad,
 } from "./components";
 
 const App = () => {
@@ -22,10 +24,14 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/register" element={<RegistrationForm />} />
-          <Route path="/fuel" element={<FuelQuoteForm />} />
-          <Route path="/display" element={<DataDisplay />} />
-          <Route path="/profile" element={<ClientProfile />} />
+
+          <Route element={<RequireAuth />}>
+            <Route path="/load" element={<DataLoad />} />
+            <Route path="/register" element={<RegistrationForm />} />
+            <Route path="/fuel" element={<FuelQuoteForm />} />
+            <Route path="/display" element={<DataDisplay />} />
+            <Route path="/profile" element={<ClientProfile />} />
+          </Route>
         </Routes>
       </main>
     </>
