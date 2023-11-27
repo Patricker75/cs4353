@@ -3,7 +3,7 @@ import "./ClientProfile.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import clientProfileSlice from "../../redux/clientProfileSlice";
+import clientProfileSlice from "../../redux/slices/clientProfileSlice";
 import states from "../../utils/states";
 
 import {
@@ -14,7 +14,7 @@ import {
   updateCity,
   updateState,
   updateZipcode,
-} from "../../redux/clientProfileSlice";
+} from "../../redux/slices/clientProfileSlice";
 
 const ClientProfile = () => {
   const dispatch = useDispatch();

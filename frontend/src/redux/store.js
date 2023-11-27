@@ -1,27 +1,21 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
-import fuelQuoteSliceReducer from "./fuelQuoteSlice";
-import clientProfileReducer from "./clientProfileSlice";
-import loginReducer from "./loginSlice";
-import registerReducer from "./registerSlice";
-import historyReducer from "./historySlice"; // Import the history slice
+import fuelQuoteSliceReducer from "./slices/fuelQuoteSlice";
+import clientProfileReducer from "./slices/clientProfileSlice";
+import loginReducer from "./slices/loginSlice";
+import historyReducer from "./slices/historySlice"; // Import the history slice
+import authReducer from "./slices/authSlice";
 
 const rootReducer = {
   fuelQuote: fuelQuoteSliceReducer,
   clientProfile: clientProfileReducer,
-  register: registerReducer,
   login: loginReducer,
   history: historyReducer, // Include the history slice
+  auth: authReducer,
 };
-
-const middleware = [];
-
-const enhancers = [];
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware,
-  enhancers,
 });
 
 // Subscribe to the store and log the state whenever it changes
