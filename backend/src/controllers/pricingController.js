@@ -49,7 +49,6 @@ export const calculatePricePerGallon = async (userId, amount) => {
   try {
     // Parse amount from param string
     amount = parseInt(amount);
-    console.log(amount);
 
     if (!validatePrice(amount)) {
       throw Error("Invalid Amount");
