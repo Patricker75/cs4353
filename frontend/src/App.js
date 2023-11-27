@@ -1,3 +1,5 @@
+import "./App.css";
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -9,8 +11,6 @@ import {
   NavBar,
   RegistrationForm,
 } from "./components";
-
-import "./App.css";
 
 const App = () => {
   return (
