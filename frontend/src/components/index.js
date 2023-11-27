@@ -4,7 +4,7 @@ import FuelQuoteForm from "./FuelQuoteForm";
 import Login from "./Login";
 import RegistrationForm from "./RegistrationForm";
 
-import { NavBar } from "./shared";
+import { NavBar, RequireAuth, DataLoad } from "./shared";
 
 export {
   ClientProfile,
@@ -13,4 +13,6 @@ export {
   Login,
   RegistrationForm,
   NavBar,
+  RequireAuth,
+  DataLoad,
 };

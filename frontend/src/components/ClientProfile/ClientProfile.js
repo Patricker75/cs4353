@@ -2,91 +2,54 @@ import "./ClientProfile.css";
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import clientProfileSlice from "../../redux/slices/clientProfileSlice";
-import states from "../../utils/states";
 
 import {
-  updateUserID,
-  updateName,
-  updateMainAddress,
-  updateAuxAddress,
-  updateCity,
-  updateState,
-  updateZipcode,
-} from "../../redux/slices/clientProfileSlice";
+  handleProfileUpdate,
+  handleProfilGet,
+} from "../../redux/slices/profileSlice";
+import states from "../../utils/states";
+import validateProfile from "../../validators/profile";
 
 const ClientProfile = () => {
   const dispatch = useDispatch();
-  const clientProfile = useSelector((state) => state.clientProfile);
+  const userProfile = useSelector((state) => state.profile.profile);
 
-  const generateRandomUserId = () => {
-    return (
-      "user_" + new Date().getTime() + "_" + Math.floor(Math.random() * 1000)
-    );
-  };
-  useEffect(() => {
-    // Generate a random user ID only when the component first loads
-    const userId = generateRandomUserId();
-    // Dispatch the user ID to the Redux store
-    dispatch(updateUserID(userId));
-  }, []); // Empty dependency array to run this effect only once
+  const [profile, setProfile] = useState(userProfile);
+  const [formError, setFormError] = useState("");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     evt.stopPropagation();
 
-    // Generate a random user ID
-    const userId = generateRandomUserId();
+    let status = validateProfile(profile);
 
-    // Dispatch actions to update the client profile fields
-    dispatch(updateName(clientProfile.name));
-    dispatch(updateMainAddress(clientProfile.mainAddress));
-    dispatch(updateAuxAddress(clientProfile.auxAddress));
-    dispatch(updateCity(clientProfile.city));
-    dispatch(updateState(clientProfile.state));
-    dispatch(updateZipcode(clientProfile.zipcode));
-  };
+    switch (status) {
+      case 0:
+        setFormError("");
 
-  const handleSave = () => {
-    console.log("Profile data stored in Redux:", {
-      userID: clientProfile.userID,
-      name: clientProfile.name,
-      mainAddress: clientProfile.mainAddress,
-      auxAddress: clientProfile.auxAddress,
-      city: clientProfile.city,
-      state: clientProfile.state,
-      zipcode: clientProfile.zipcode,
-    });
-
-    let newProfile = {
-      userID: clientProfile.userID,
-      profileData: {
-        name: clientProfile.name,
-        mainAddress: clientProfile.mainAddress,
-        auxAddress: clientProfile.auxAddress,
-        city: clientProfile.city,
-        state: clientProfile.state,
-        zipcode: clientProfile.zipcode,
-      },
-    };
-
-    axios
-      .put("http://localhost:4001/api/profile", newProfile, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Profile updated successfully on the server.");
-        } else {
-          console.error("Failed to update profile on the server.");
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred while updating the profile:", error);
-      });
+        dispatch(handleProfileUpdate(profile));
+        break;
+      case -1:
+        setFormError("Invalid Name");
+        break;
+      case -2:
+        setFormError("Invalid Primary Addresss");
+        break;
+      case -3:
+        setFormError("Invalid City");
+        break;
+      case -4:
+        setFormError("Invalid State");
+        break;
+      case -5:
+        setFormError("Invalid Zip Code");
+        break;
+      case -6:
+        setFormError("Invalid Auxillary Addresss");
+        break;
+      default:
+        setFormError("");
+    }
   };
 
   return (
@@ -99,8 +62,10 @@ const ClientProfile = () => {
             name="name"
             id="name"
             maxLength="50"
-            value={clientProfile.name}
-            onChange={(evt) => dispatch(updateName(evt.target.value))}
+            defaultValue={userProfile.name}
+            onChange={(evt) =>
+              setProfile({ ...profile, name: evt.target.value })
+            }
             required
           />
         </p>
@@ -112,8 +77,10 @@ const ClientProfile = () => {
             name="mainAddress"
             id="mainAddress"
             maxLength="100"
-            value={clientProfile.mainAddress}
-            onChange={(evt) => dispatch(updateMainAddress(evt.target.value))}
+            defaultValue={userProfile.addressPrimary}
+            onChange={(evt) =>
+              setProfile({ ...profile, addressPrimary: evt.target.value })
+            }
             required
           />
         </p>
@@ -125,8 +92,10 @@ const ClientProfile = () => {
             name="auxAddress"
             id="auxAddress"
             maxLength="100"
-            value={clientProfile.auxAddress}
-            onChange={(evt) => dispatch(updateAuxAddress(evt.target.value))}
+            defaultValue={userProfile.addressAux}
+            onChange={(evt) =>
+              setProfile({ ...profile, addressAux: evt.target.value })
+            }
           />
         </p>
 
@@ -137,8 +106,10 @@ const ClientProfile = () => {
             name="city"
             id="city"
             maxLength="100"
-            value={clientProfile.city}
-            onChange={(evt) => dispatch(updateCity(evt.target.value))}
+            defaultValue={userProfile.city}
+            onChange={(evt) =>
+              setProfile({ ...profile, city: evt.target.value })
+            }
             required
           />
         </p>
@@ -148,14 +119,16 @@ const ClientProfile = () => {
           <select
             name="state"
             id="state"
-            onChange={(evt) => dispatch(updateState(evt.target.value))}
-            value={clientProfile.state}
+            defaultValue={userProfile.state}
+            onChange={(evt) =>
+              setProfile({ ...profile, state: evt.target.value })
+            }
             required
           >
             <option value="">Select State</option>
             {states.map((state) => (
-              <option key={state} value={state}>
-                {state}
+              <option key={state.value} value={state.value}>
+                {state.label}
               </option>
             ))}
           </select>
@@ -167,18 +140,19 @@ const ClientProfile = () => {
             type="text"
             name="zipcode"
             id="zipcode"
-            value={clientProfile.zipcode}
-            onChange={(evt) => dispatch(updateZipcode(evt.target.value))}
+            defaultValue={userProfile.zipCode}
+            onChange={(evt) =>
+              setProfile({ ...profile, zipCode: parseInt(evt.target.value) })
+            }
             minLength="5"
             maxLength="9"
             required
           />
         </p>
 
-        <button type="button" onClick={handleSave}>
-          Save
-        </button>
+        <input type="submit" value="Save" />
       </form>
+      <p>{formError}</p>
     </div>
   );
 };

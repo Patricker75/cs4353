@@ -29,7 +29,7 @@ const RegistrationForm = () => {
       dispatch(handleRegisterUser(data))
         .unwrap()
         .then(() => {
-          navigate("/profile", { replace: true });
+          navigate("/load", { replace: true });
         })
         .catch((error) => {
           setFormError(error.message);
