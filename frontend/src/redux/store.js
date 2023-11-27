@@ -2,14 +2,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import fuelQuoteSliceReducer from "./slices/fuelQuoteSlice";
 import clientProfileReducer from "./slices/clientProfileSlice";
-import loginReducer from "./slices/loginSlice";
 import historyReducer from "./slices/historySlice"; // Import the history slice
 import authReducer from "./slices/authSlice";
 
 const rootReducer = {
   fuelQuote: fuelQuoteSliceReducer,
   clientProfile: clientProfileReducer,
-  login: loginReducer,
   history: historyReducer, // Include the history slice
   auth: authReducer,
 };
