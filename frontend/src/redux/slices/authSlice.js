@@ -9,10 +9,22 @@ const initialState = {
 };
 
 export const handleRegisterUser = createAsyncThunk(
-  "register/new-user",
+  "auth/register",
   async (userData) => {
     return axios
       .post(`${getServerUrl()}/api/login/register`, userData)
+      .then((response) => response.data.id)
+      .catch((error) => {
+        throw Error(error.response.data.message);
+      });
+  }
+);
+
+export const handleLoginUser = createAsyncThunk(
+  "auth/login",
+  async (userData) => {
+    return axios
+      .post(`${getServerUrl()}/api/login`, userData)
       .then((response) => response.data.id)
       .catch((error) => {
         throw Error(error.response.data.message);
@@ -34,6 +46,19 @@ const authSlice = createSlice({
       state.error = "";
     });
     builder.addCase(handleRegisterUser.rejected, (state, action) => {
+      state.userId = -1;
+      state.error = action.error.message;
+    });
+
+    builder.addCase(handleLoginUser.pending, (state) => {
+      state = initialState;
+    });
+    builder.addCase(handleLoginUser.fulfilled, (state, action) => {
+      console.log(action);
+      state.userId = action.payload;
+      state.error = "";
+    });
+    builder.addCase(handleLoginUser.rejected, (state, action) => {
       state.userId = -1;
       state.error = action.error.message;
     });

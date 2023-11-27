@@ -1,71 +1,79 @@
 import "./Login.css";
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import Axios
-import { useSelector, useDispatch } from "react-redux";
-import {
-  updateEmail,
-  updatePassword,
-  loginSuccess,
-  loginFailure,
-} from "../../redux/slices/loginSlice";
+
+import { handleLoginUser } from "../../redux/slices/authSlice";
+import validateAuth from "../../validators/auth";
 
 const Login = () => {
-  const email = useSelector((state) => state.login.email);
-  const password = useSelector((state) => state.login.password);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4001/api/auth/login",
-        { email, password }
-      );
-      if (response.status === 200) {
-        // Successful login
-        const user = response.data;
-        dispatch(loginSuccess(user));
-        alert("Login successful");
-        navigate("/profile");
-      } else {
-        alert("Invalid email or password");
-      }
-    } catch (error) {
-      dispatch(loginFailure("Invalid email or password"));
-      alert("Invalid email or password");
-    }
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formError, setFormError] = useState("");
 
-  const handleRegister = () => {
-    // alert("Sending you to the register page");
-    navigate("/register");
+  const handleLogin = (evt) => {
+    evt.stopPropagation();
+    evt.preventDefault();
+
+    let data = {
+      email,
+      password,
+    };
+
+    let status = validateAuth(data);
+    if (status === 0) {
+      setFormError("");
+
+      dispatch(handleLoginUser(data))
+        .unwrap()
+        .then(() => {
+          navigate("/profile", { replace: true });
+        })
+        .catch((error) => {
+          setFormError(error.message);
+        });
+      return;
+    }
+
+    switch (status) {
+      case -1:
+        setFormError("Invalid Email");
+        return;
+      case -2:
+        setFormError("Invalid Password");
+        return;
+      default:
+        setFormError("");
+        return;
+    }
   };
 
   return (
     <div className="container">
-      <div className="form">
-        <h2 id="my-black">Login</h2>
+      <h2 id="my-black">Login</h2>
+      <form className="form" onSubmit={(evt) => handleLogin(evt)}>
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => dispatch(updateEmail(e.target.value))}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => dispatch(updatePassword(e.target.value))}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="login-button" onClick={handleLogin}>
-          Login
-        </button>
-        <button className="register-button" onClick={handleRegister}>
-          Register
-        </button>
-      </div>
+        <input className="login-button" type="submit" value="Login" />
+      </form>
+      <button className="register-button" onClick={() => navigate("/register")}>
+        Register
+      </button>
+      <p>{formError}</p>
     </div>
   );
 };
