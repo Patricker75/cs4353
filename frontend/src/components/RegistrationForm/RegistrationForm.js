@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { handleRegisterUser } from "../../redux/slices/authSlice";
+import validateAuth from "../../validators/auth";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -15,24 +16,13 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState("");
 
-  const validateData = (data) => {
-    if (!data.email) return -1;
-    if (!data.password) return -2;
-
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email))
-      return -1;
-    console.log("IMPLEMENT VERIFYING PASSWORD");
-
-    return 0;
-  };
-
   const handleRegister = () => {
     let data = {
       email,
       password,
     };
 
-    let status = validateData(data);
+    let status = validateAuth(data);
     if (status === 0) {
       setFormError("");
 
