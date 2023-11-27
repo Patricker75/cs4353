@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './ClientProfile.css';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import clientProfileSlice from '../redux/clientProfileSlice';
+import React, { useState, useEffect } from "react";
+import "./ClientProfile.css";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import clientProfileSlice from "../redux/clientProfileSlice";
+import states from "../utils/states";
 
 import {
   updateUserID,
@@ -12,70 +13,16 @@ import {
   updateCity,
   updateState,
   updateZipcode,
-} from '../redux/clientProfileSlice';
+} from "../redux/clientProfileSlice";
 
 export const ClientProfile = () => {
-  const usStates = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming'
-  ];
-  // Rest of your component code
-  // ...
-
-
   const dispatch = useDispatch();
   const clientProfile = useSelector((state) => state.clientProfile);
 
   const generateRandomUserId = () => {
-    return 'user_' + new Date().getTime() + '_' + Math.floor(Math.random() * 1000);
+    return (
+      "user_" + new Date().getTime() + "_" + Math.floor(Math.random() * 1000)
+    );
   };
   useEffect(() => {
     // Generate a random user ID only when the component first loads
@@ -101,7 +48,7 @@ export const ClientProfile = () => {
   };
 
   const handleSave = () => {
-    console.log('Profile data stored in Redux:', {
+    console.log("Profile data stored in Redux:", {
       userID: clientProfile.userID,
       name: clientProfile.name,
       mainAddress: clientProfile.mainAddress,
@@ -124,20 +71,20 @@ export const ClientProfile = () => {
     };
 
     axios
-      .put('http://localhost:4001/api/profile', newProfile, {
+      .put("http://localhost:4001/api/profile", newProfile, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log('Profile updated successfully on the server.');
+          console.log("Profile updated successfully on the server.");
         } else {
-          console.error('Failed to update profile on the server.');
+          console.error("Failed to update profile on the server.");
         }
       })
       .catch((error) => {
-        console.error('An error occurred while updating the profile:', error);
+        console.error("An error occurred while updating the profile:", error);
       });
   };
 
@@ -205,9 +152,9 @@ export const ClientProfile = () => {
             required
           >
             <option value="">Select State</option>
-            {usStates.map((usState) => (
-              <option key={usState} value={usState}>
-                {usState}
+            {states.map((state) => (
+              <option key={state} value={state}>
+                {state}
               </option>
             ))}
           </select>
