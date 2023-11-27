@@ -3,20 +3,12 @@
   color: black;
 }
 
-html, body {
+/* html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-/* Background */
-body {
-  background: linear-gradient(to bottom, blue, purple, black);
-  color: black; /* Text color */
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow: hidden; /* Prevent scrollbars */
-}
+} */
 
 /* Container */
 .container {
@@ -42,7 +34,7 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  background: linear-gradient(45deg, #4b0082 33.33%, #800080 66.66%);
 }
 
 /* Style the title */

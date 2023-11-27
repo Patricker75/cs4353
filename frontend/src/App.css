@@ -1,8 +1,14 @@
-header {
-    margin-bottom: 50;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-nav a {
-    padding: 10px;
-    color: white;
+body {
+  background: linear-gradient(to bottom, blue, purple, black);
+  color: black;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
 }

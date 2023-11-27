@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
+import "./FuelQuoteForm.css";
+
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 import {
   updateAmount,
@@ -8,11 +10,9 @@ import {
   updateTotalPrice,
   updateDeliveryDate,
   updateFuelQuote,
-} from '../redux/fuelQuoteSlice';
+} from "../../redux/fuelQuoteSlice";
 
-import {
-  updateUserID,
-} from '../redux/clientProfileSlice';
+import { updateUserID } from "../../redux/clientProfileSlice";
 
 function FuelQuoteForm() {
   const fuelQuote = useSelector((state) => state.fuelQuote);
@@ -24,7 +24,6 @@ function FuelQuoteForm() {
     // Calculate the total price whenever amount or unitPrice changes
     dispatch(updateTotalPrice());
   }, [fuelQuote.amount, fuelQuote.unitPrice]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,20 +41,23 @@ function FuelQuoteForm() {
 
     try {
       // Send a POST request to the API with the jsondata object
-      const response = await axios.post('http://localhost:4001/api/quotes/new', jsondata);
+      const response = await axios.post(
+        "http://localhost:4001/api/quotes/new",
+        jsondata
+      );
 
       // Handle the API response if needed
-      console.log('API response:', response.data);
+      console.log("API response:", response.data);
 
       // You can dispatch the submitFuelQuote action or any other actions you need
       // dispatch(submitFuelQuote(fuelQuote));
     } catch (error) {
       // Handle errors if the request fails
-      console.error('API request error:', error);
+      console.error("API request error:", error);
     }
-  }
+  };
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const generatedProfitMargin = 0.1;
 
   return (

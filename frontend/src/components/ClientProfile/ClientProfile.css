@@ -1,0 +1,58 @@
+/* Container */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, blue, purple, black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh; /* Ensure the container takes the full viewport height */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Set a fixed width for the container */
+}
+
+.form {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #4b0082 33.33%, #800080 66.66%);
+  border: 1px solid black; /* Add a 1px border with a light gray color */
+}
+form input[type="text"],
+form select {
+  width: 80%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid black; /* Add a 1px border with a black color */
+  border-radius: 0px;
+  background-color: transparent; /* Set the background color to transparent */
+  color: grey;
+  outline: none; /* Remove the default outline on focus */
+}
+
+/* Style form paragraph elements */
+form p {
+  margin: 5px 0;
+  color: grey;
+}
+
+/* Style form submit button */
+form input[type="submit"] {
+  background-color: #4b0082; /* Set the background color to a single color */
+  color: white;
+  border: none; /* Remove the border */
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #800080; /* Change the background color on hover */
+}

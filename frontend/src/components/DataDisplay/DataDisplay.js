@@ -1,16 +1,19 @@
+import "./DataDisplay.css";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateFuelQuoteHistory } from "../redux/historySlice";
-import "./DataDisplay.css";
-import axios from 'axios';
+import { updateFuelQuoteHistory } from "../../redux/historySlice";
+import axios from "axios";
 
 function calculateTotalPrice(amount, unitPrice) {
   return amount * unitPrice;
 }
 
 function FuelQuoteTable() {
-  const fuelQuoteHistory = useSelector((state) => state.history.fuelQuoteHistory);
+  const fuelQuoteHistory = useSelector(
+    (state) => state.history.fuelQuoteHistory
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState(fuelQuoteHistory);
   const navigate = useNavigate();
@@ -22,13 +25,15 @@ function FuelQuoteTable() {
     async function fetchData() {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:4001/api/quotes/history');
+        const response = await axios.get(
+          "http://localhost:4001/api/quotes/history"
+        );
         const data = response.data;
         // Dispatch the fetched data to your Redux store
         dispatch(updateFuelQuoteHistory(data));
         setFilteredData(data); // Set the filtered data
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
@@ -54,7 +59,7 @@ function FuelQuoteTable() {
         } else {
           setFilteredData(fuelQuoteHistory);
         }
-        
+
         setTimeout(() => {
           setLoading(false);
         }, 850);
@@ -64,11 +69,11 @@ function FuelQuoteTable() {
 
   const handleExit = () => {
     navigate("/");
-  }
+  };
 
   const handleDisplayData = () => {
     navigate("/fuel");
-  }
+  };
 
   return (
     <div className="container2">
@@ -103,7 +108,9 @@ function FuelQuoteTable() {
               <tr key={index}>
                 <td>{item.amount}</td>
                 <td>${item.unitPrice.toFixed(2)}</td>
-                <td>${calculateTotalPrice(item.amount, item.unitPrice).toFixed(2)}</td>
+                <td>
+                  ${calculateTotalPrice(item.amount, item.unitPrice).toFixed(2)}
+                </td>
                 <td>{item.deliveryDate}</td>
                 <td>{item.mainAddress}</td>
               </tr>

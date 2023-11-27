@@ -1,15 +1,3 @@
-/* Set background styles for the entire page */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to bottom, blue, purple, black);
-  color: grey; /* Text color */
-  font-family: Arial, sans-serif;   
-  text-align: center;
-  overflow: hidden;
-}
-
 /* Center the content vertically and horizontally */
 .container2 {
   display: flex;
@@ -36,7 +24,7 @@ table {
 
 /* Style the table headers */
 table th {
-  background-color: #4B0082;
+  background-color: #4b0082;
   color: white;
   padding: 10px;
 }
@@ -48,7 +36,7 @@ table td {
 }
 
 /* Add a hover effect for table rows */
-table tbody tr:hover td{
+table tbody tr:hover td {
   background-color: #800080;
 }
 
@@ -65,7 +53,7 @@ table tbody tr:hover td{
 
 /* Style the exit button */
 .exit-button1 {
-  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  background: linear-gradient(45deg, #4b0082 33.33%, #800080 66.66%);
   color: white;
   border: 1px solid black; /* Add a black border */
   border-radius: 4px;
@@ -83,13 +71,15 @@ table tbody tr:hover td{
 .display-data-button-container {
   position: fixed;
   top: 3%;
-  right: calc(40% + 30px); /* Adjust the right value to move it closer to the exit button */
+  right: calc(
+    40% + 30px
+  ); /* Adjust the right value to move it closer to the exit button */
   z-index: 999;
 }
 
 /* Style the display data button */
 .display-data-button {
-  background: linear-gradient(45deg, #4B0082 33.33%, #800080 66.66%);
+  background: linear-gradient(45deg, #4b0082 33.33%, #800080 66.66%);
   color: white;
   border: 1px solid black; /* Add a black border */
   border-radius: 4px;
@@ -102,4 +92,3 @@ table tbody tr:hover td{
 .display-data-button:hover {
   background: #800080; /* Change the background color on hover */
 }
-
