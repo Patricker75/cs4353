@@ -38,7 +38,7 @@ function FuelQuoteForm() {
         totalPrice: payload.total,
       });
     });
-  }, [quote.amount]);
+  }, [dispatch, quote.amount]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
