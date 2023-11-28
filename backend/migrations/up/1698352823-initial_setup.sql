@@ -29,6 +29,7 @@ CREATE TABLE fuel_request (
     amount DECIMAL(10, 2) NOT NULL,
     unit_price DECIMAL(5, 3) NOT NULL,
     total_price MONEY NOT NULL,
+    delivery_address VARCHAR(100) NOT NULL,
     delivery_date DATE,
 
     CONSTRAINT pk__fuel_request PRIMARY KEY (request_id),

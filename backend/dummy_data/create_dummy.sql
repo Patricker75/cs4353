@@ -38,15 +38,15 @@ BEGIN
 	WHERE user_id = user_id_3;
 	
 	-- Create dummy fuel requests
-	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_date)
-	VALUES (user_id_1, 1001, 1.74, 1741.74, '2023-12-31');
+	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_address, delivery_date)
+	VALUES (user_id_1, 1001, 1.74, 1741.74, '123 Street', '2023-12-31');
 	
-	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_date)
-	VALUES (user_id_2, 2000, 1.755, 3510, '2024-01-01');
+	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_address, delivery_date)
+	VALUES (user_id_2, 2000, 1.755, 3510, '456 Road', '2024-01-01');
 	
-	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_date)
-	VALUES (user_id_3, 5000, 1.74, 8700, '2024-01-02');
+	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_address, delivery_date)
+	VALUES (user_id_3, 5000, 1.74, 8700, '789 Lane', '2024-01-02');
 	
-	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_date)
-	VALUES (user_id_3, 5000, 1.725, 8625, '2024-02-01');
+	INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_address, delivery_date)
+	VALUES (user_id_3, 5000, 1.725, 8625, '135 Trail', '2024-02-01');
 END $$
