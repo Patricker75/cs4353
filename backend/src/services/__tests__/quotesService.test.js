@@ -13,6 +13,7 @@ describe("tests creating a new fuel quote", () => {
   const userId = 1;
   const requestData = {
     amount: 10,
+    unitPrice: 10,
     totalPrice: 100.0,
     deliveryDate: new Date(2023, 11, 1),
   };
@@ -43,6 +44,7 @@ describe("tests creating a new fuel quote", () => {
           userId,
           requestData.amount,
           requestData.deliveryDate,
+          requestData.unitPrice,
           requestData.totalPrice,
         ],
       })
@@ -60,6 +62,7 @@ describe("tests getting a single fuel quote", () => {
     requestId: fuelRequestId,
     userId: userId,
     amount: 10,
+    unitPrice: 10,
     totalPrice: 100.0,
     deliveryDate: new Date(2023, 11, 1),
   };
@@ -75,6 +78,7 @@ describe("tests getting a single fuel quote", () => {
           request_id: fuelRequestId,
           user_id: request.userId,
           amount: request.amount,
+          unit_price: request.unitPrice,
           total_price: request.totalPrice,
           delivery_date: request.deliveryDate,
         },
@@ -103,6 +107,7 @@ describe("tests getting fuel quote history", () => {
       requestId: 20,
       userId: userId,
       amount: 10,
+      unitPrice: 10,
       totalPrice: 100.0,
       deliveryDate: new Date(2023, 11, 1),
     },
@@ -110,6 +115,7 @@ describe("tests getting fuel quote history", () => {
       requestId: 21,
       userId: userId,
       amount: 50,
+      unitPrice: 4,
       totalPrice: 200.0,
       deliveryDate: new Date(2023, 11, 20),
     },
@@ -126,6 +132,7 @@ describe("tests getting fuel quote history", () => {
           request_id: request.requestId,
           user_id: request.userId,
           amount: request.amount,
+          unit_price: request.unitPrice,
           total_price: request.totalPrice,
           delivery_date: request.deliveryDate,
         };

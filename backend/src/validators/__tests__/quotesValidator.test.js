@@ -6,6 +6,7 @@ describe("tests fuel quotes validator", () => {
   beforeEach(() => {
     fuelRequestData = {
       amount: 10,
+      unitPrice: 10,
       totalPrice: 10.0,
       deliveryDate: new Date(),
     };
@@ -19,6 +20,14 @@ describe("tests fuel quotes validator", () => {
 
   it("should return false - missing amount", () => {
     delete fuelRequestData.amount;
+
+    let result = validateQuote(fuelRequestData);
+
+    expect(result).toBe(false);
+  });
+
+  it("should return false - missing unit price", () => {
+    delete fuelRequestData.unitPrice;
 
     let result = validateQuote(fuelRequestData);
 
@@ -43,6 +52,14 @@ describe("tests fuel quotes validator", () => {
 
   it("should return false - amount is not a number", () => {
     fuelRequestData.amount = "10";
+
+    let result = validateQuote(fuelRequestData);
+
+    expect(result).toBe(false);
+  });
+
+  it("should return false - unit price is not a number", () => {
+    fuelRequestData.unitPrice = "10";
 
     let result = validateQuote(fuelRequestData);
 
