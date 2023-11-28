@@ -49,6 +49,17 @@ export const getUserQuoteHistory = async (userId) => {
       throw Error("No Quotes Found");
     }
 
+    // Parse Properties into Approriate Types
+    quotes = quotes.map((quote) => {
+      return {
+        ...quote,
+        amount: parseFloat(quote.amount),
+        unitPrice: parseFloat(quote.unitPrice),
+        totalPrice: parseFloat(quote.totalPrice),
+        deliveryDate: new Date(quote.deliveryDate),
+      };
+    });
+
     return quotes;
   } catch (error) {
     throw error;
