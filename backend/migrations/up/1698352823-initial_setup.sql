@@ -28,7 +28,7 @@ CREATE TABLE fuel_request (
     user_id INT,
     amount DECIMAL(10, 2) NOT NULL,
     unit_price DECIMAL(5, 3) NOT NULL,
-    total_price MONEY NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
     delivery_address VARCHAR(100) NOT NULL,
     delivery_date DATE,
 

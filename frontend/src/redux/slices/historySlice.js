@@ -1,49 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialMockData = [
-  {
-    amount: 3,
-    unitPrice: 12.5,
-    totalPrice: 37.5,
-    deliveryDate: "2023-09-22T00:00:00.000Z",
-    deliveryAddress: "123 Main Street, City, State",
-  },
-  {
-    amount: 5,
-    unitPrice: 11.75,
-    totalPrice: 58.75,
-    deliveryDate: "2023-09-23T00:00:00.000Z",
-    deliveryAddress: "456 Elm Street, City, State",
-  },
-  {
-    amount: 2,
-    unitPrice: 10.0,
-    totalPrice: 20.0,
-    deliveryDate: "2023-09-24T00:00:00.000Z",
-    deliveryAddress: "789 Oak Avenue, City, State",
-  },
-  {
-    amount: 4,
-    unitPrice: 12.0,
-    totalPrice: 48.0,
-    deliveryDate: "2023-09-25T00:00:00.000Z",
-    deliveryAddress: "101 Pine Road, City, State",
-  },
-];
+import { getServerUrl } from "../../utils/consts";
+
+const initialState = {
+  items: [],
+  error: "",
+};
+
+export const handleHistoryGet = createAsyncThunk(
+  "history/get",
+  async (_, { getState }) => {
+    let state = getState();
+
+    let config = {
+      headers: {
+        userId: state.auth.userId,
+      },
+    };
+    return axios
+      .get(`${getServerUrl()}/api/quotes`, config)
+      .then((response) => response.data)
+      .catch((error) => {
+        throw Error(error.response.data.message);
+      });
+  }
+);
 
 const historySlice = createSlice({
   name: "history",
-  initialState: {
-    fuelQuoteHistory: initialMockData,
-  },
-  reducers: {
-    updateFuelQuoteHistory: (state, action) => {
-      // Replace the existing data with the new data
-      state.fuelQuoteHistory = action.payload;
-    },
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(handleHistoryGet.fulfilled, (state, action) => {
+      state.items = action.payload.quotes.map((quote) => {
+        return {
+          ...quote,
+          deliveryDate: new Date(quote.deliveryDate),
+        };
+      });
+      state.error = "";
+    });
+    builder.addCase(handleHistoryGet.rejected, (state, action) => {
+      state.error = action.error.message;
+    });
   },
 });
-
-export const { updateFuelQuoteHistory } = historySlice.actions;
 
 export default historySlice.reducer;
