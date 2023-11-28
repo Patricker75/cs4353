@@ -1,59 +1,86 @@
 import "./FuelQuoteForm.css";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 
 import {
-  updateAmount,
-  updateUnitPrice,
-  updateTotalPrice,
-  updateDeliveryDate,
-  updateFuelQuote,
+  handlePriceGet,
+  handleQuoteAdd,
 } from "../../redux/slices/fuelQuoteSlice";
-
-import { updateUserID } from "../../redux/slices/clientProfileSlice";
+import validateQuote from "../../validators/quote";
 
 function FuelQuoteForm() {
-  const fuelQuote = useSelector((state) => state.fuelQuote);
-  const clientProfile = useSelector((state) => state.clientProfile);
   const dispatch = useDispatch();
 
-  // Dispatch the updateUserID action to set the user's ID when the component loads
+  const userProfile = useSelector((state) => state.profile.profile);
+
+  const initialQuote = {
+    amount: -1,
+    totalPrice: -1,
+    deliveryAddress: userProfile.addressPrimary,
+    deliveryDate: null,
+  };
+  const initialPricing = {
+    unitPrice: 0,
+    totalPrice: 0,
+  };
+
+  const [quote, setQuote] = useState(initialQuote);
+  const [pricing, setPricing] = useState(initialPricing);
+  const [formError, setFormError] = useState("");
+
   useEffect(() => {
-    // Calculate the total price whenever amount or unitPrice changes
-    dispatch(updateTotalPrice());
-  }, [fuelQuote.amount, fuelQuote.unitPrice]);
+    if (quote.amount < 1) return;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    dispatch(handlePriceGet(quote.amount)).then(({ payload }) => {
+      setPricing({
+        unitPrice: payload.unitPrice,
+        totalPrice: payload.total,
+      });
+    });
+  }, [quote.amount]);
 
-    // Create an object with the user's ID and request data to send to the API
-    let jsondata = {
-      userID: clientProfile.userID,
-      requestData: {
-        amount: fuelQuote.amount,
-        unitPrice: fuelQuote.unitPrice,
-        deliveryDate: fuelQuote.deliveryDate,
-        mainAddress: clientProfile.mainAddress,
-      },
-    };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    evt.stopPropagation();
 
-    try {
-      // Send a POST request to the API with the jsondata object
-      const response = await axios.post(
-        "http://localhost:4001/api/quotes/new",
-        jsondata
-      );
+    let status = validateQuote(quote);
 
-      // Handle the API response if needed
-      console.log("API response:", response.data);
+    switch (status) {
+      case 0:
+        setFormError("");
 
-      // You can dispatch the submitFuelQuote action or any other actions you need
-      // dispatch(submitFuelQuote(fuelQuote));
-    } catch (error) {
-      // Handle errors if the request fails
-      console.error("API request error:", error);
+        let quoteData = {
+          ...quote,
+          ...pricing,
+        };
+
+        dispatch(handleQuoteAdd(quoteData))
+          .unwrap()
+          .then(() => {
+            console.log("ALERT USER");
+            setQuote(initialQuote);
+            setPricing(initialPricing);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        break;
+      case -1:
+        setFormError("Invalid Amount");
+        break;
+      case -2:
+        console.error("Total Price is not valid ????");
+        break;
+      case -3:
+        setFormError("Invalid Delivery Address");
+        break;
+      case -4:
+        setFormError("Invalid Delivery Date");
+        break;
+      default:
+        setFormError("");
+        break;
     }
   };
 
@@ -69,38 +96,58 @@ function FuelQuoteForm() {
             type="number"
             id="amount"
             placeholder="Amount or Number"
-            value={fuelQuote.amount}
-            onChange={(e) => dispatch(updateAmount(parseInt(e.target.value)))}
             min="1"
+            value={quote.amount}
+            onChange={(evt) =>
+              setQuote({ ...quote, amount: parseFloat(evt.target.value) })
+            }
             required
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="address">Delivery Address:</label>
-          <p>{clientProfile.mainAddress}</p>
+          {!userProfile.addressAux ? (
+            <p>{userProfile.addressPrimary}</p>
+          ) : (
+            <select
+              name="deliveryAddress"
+              defaultValue="primary"
+              onChange={(evt) =>
+                setQuote({ ...quote, deliveryAddress: evt.target.value })
+              }
+            >
+              <option key="primary" value={userProfile.addressPrimary}>
+                {userProfile.addressPrimary}
+              </option>
+              <option key="aux" value={userProfile.addressAux}>
+                {userProfile.addressAux}
+              </option>
+            </select>
+          )}
         </div>
 
         <div className="form-group">
-          <label htmlFor="deliveryDate">Delivery Date</label>
+          <label htmlFor="deliveryDate">Delivery Date:</label>
           <input
             type="date"
             name="deliveryDate"
             id="deliveryDate"
-            value={fuelQuote.deliveryDate}
-            onChange={(evt) => dispatch(updateDeliveryDate(evt.target.value))}
             min={today}
+            onChange={(evt) =>
+              setQuote({ ...quote, deliveryDate: evt.target.value })
+            }
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="unitPrice">Price per Gallon:</label>
-          <p>${fuelQuote.unitPrice}</p>
+          <p>{pricing.unitPrice}</p>
         </div>
 
         <div className="form-group">
           <label htmlFor="unitPrice">Total:</label>
-          <p>${fuelQuote.totalPrice}</p>
+          <p>{pricing.totalPrice}</p>
         </div>
 
         <div className="form-group">
@@ -117,6 +164,7 @@ function FuelQuoteForm() {
           )}
         </div>
       </form>
+      <p>{formError}</p>
     </div>
   );
 }
