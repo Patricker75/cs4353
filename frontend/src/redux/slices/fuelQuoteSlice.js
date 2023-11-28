@@ -1,43 +1,61 @@
-import { createSlice } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+import { getServerUrl } from "../../utils/consts";
 
 const initialState = {
-  amount: 1,
-  unitPrice: 10,
-  totalPrice: 0,
-  fuelQuote: 0, // New fuelQuote variable
-  deliveryDate: new Date().toISOString().split('T')[0],
+  quote: {
+    amount: -1,
+    unitPrice: -1,
+    totalPrice: -1,
+    deliveryAddress: "",
+    deliveryDate: null,
+  },
+  error: "",
 };
 
+export const handlePriceGet = createAsyncThunk(
+  "fuelQuote/get-price",
+  async (amount, { getState }) => {
+    let state = getState();
+
+    let config = {
+      headers: {
+        userId: state.auth.userId,
+      },
+    };
+    return axios
+      .get(`${getServerUrl()}/api/pricing/${amount}`, config)
+      .then((response) => response.data)
+      .catch((error) => {
+        throw Error(error.response.data.message);
+      });
+  }
+);
+
+export const handleQuoteAdd = createAsyncThunk(
+  "fuelQuote/add-quote",
+  async (quoteData, { getState }) => {
+    let state = getState();
+
+    let config = {
+      headers: {
+        userId: state.auth.userId,
+      },
+    };
+    return axios
+      .post(`${getServerUrl()}/api/quotes`, quoteData, config)
+      .then((response) => response.data)
+      .catch((error) => {
+        throw Error(error.response.data.message);
+      });
+  }
+);
+
 const fuelQuoteSlice = createSlice({
-  name: 'fuelQuote',
+  name: "fuelQuote",
   initialState,
-  reducers: {
-    updateAmount: (state, action) => {
-      state.amount = action.payload;
-    },
-    updateUnitPrice: (state, action) => {
-      state.unitPrice = action.payload;
-    },
-    updateTotalPrice: (state) => {
-      state.totalPrice = state.amount * state.unitPrice;
-    },
-    updateDeliveryDate: (state, action) => {
-      state.deliveryDate = action.payload;
-    },
-    updateFuelQuote: (state, action) => {
-      state.fuelQuote = action.payload;
-    },
-  },
+  reducers: {},
 });
-
-export const {
-  updateAmount,
-  updateUnitPrice,
-  updateTotalPrice,
-  updateDeliveryDate,
-  updateFuelQuote, // Export the new action
-} = fuelQuoteSlice.actions;
-
-export const fuelQuote = initialState.fuelQuote;
 
 export default fuelQuoteSlice.reducer;
