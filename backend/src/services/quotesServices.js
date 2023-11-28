@@ -24,6 +24,7 @@ export const getFuelQuote = async (userId, requestId) => {
       amount: row.amount,
       unitPrice: row.unit_price,
       totalPrice: row.total_price,
+      deliveryAddress: row.delivery_address,
       deliveryDate: row.delivery_date,
     };
   })[0];
@@ -32,16 +33,17 @@ export const getFuelQuote = async (userId, requestId) => {
 export const addFuelQuote = async (userId, requestData) => {
   const query = {
     text: `
-    INSERT INTO fuel_request(user_id, amount, delivery_date, unit_price, total_price)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO fuel_request(user_id, amount, unit_price, total_price, delivery_address, delivery_date)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING request_id;
     `,
     values: [
       userId,
       requestData.amount,
-      requestData.deliveryDate,
       requestData.unitPrice,
       requestData.totalPrice,
+      requestData.deliveryAddress,
+      requestData.deliveryDate,
     ],
   };
 
@@ -72,6 +74,7 @@ export const getQuoteHistory = async (userId) => {
       amount: row.amount,
       unitPrice: row.unit_price,
       totalPrice: row.total_price,
+      deliveryAddress: row.delivery_address,
       deliveryDate: row.delivery_date,
     };
   });

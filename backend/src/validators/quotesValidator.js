@@ -2,6 +2,7 @@ const validate = (quote) => {
   if (!quote.amount) return false;
   if (!quote.unitPrice) return false;
   if (!quote.totalPrice) return false;
+  if (!quote.deliveryAddress) return false;
   if (!quote.deliveryDate) return false;
 
   if (typeof quote.amount !== "number") return false;

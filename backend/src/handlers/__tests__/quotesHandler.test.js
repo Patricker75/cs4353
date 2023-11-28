@@ -26,6 +26,7 @@ describe("tests creating a new fuel quote", () => {
       amount: 10,
       unitPrice: 10,
       totalPrice: 100.0,
+      deliveryAddress: "123 Street",
       deliveryDate: new Date(2023, 11, 1),
     };
 
@@ -93,6 +94,7 @@ describe("tests getting a user's fuel quote", () => {
     amount: 10,
     unitPrice: 10,
     totalPrice: 100.0,
+    deliveryAddress: "123 Street",
     deliveryDate: new Date(2023, 11, 1),
   };
 
@@ -180,6 +182,7 @@ describe("tests getting a user's quote history", () => {
       amount: 10,
       unitPrice: 10,
       totalPrice: 100.0,
+      deliveryAddress: "123 Street",
       deliveryDate: new Date(2023, 11, 1),
     },
     {
@@ -188,6 +191,7 @@ describe("tests getting a user's quote history", () => {
       amount: 50,
       unitPrice: 4,
       totalPrice: 200.0,
+      deliveryAddress: "456 Road",
       deliveryDate: new Date(2023, 11, 20),
     },
   ];

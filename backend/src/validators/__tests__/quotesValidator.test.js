@@ -8,6 +8,7 @@ describe("tests fuel quotes validator", () => {
       amount: 10,
       unitPrice: 10,
       totalPrice: 10.0,
+      deliveryAddress: "123 Street",
       deliveryDate: new Date(),
     };
   });
@@ -36,6 +37,14 @@ describe("tests fuel quotes validator", () => {
 
   it("should return false - missing total price", () => {
     delete fuelRequestData.totalPrice;
+
+    let result = validateQuote(fuelRequestData);
+
+    expect(result).toBe(false);
+  });
+
+  it("should return false - missing delivery address", () => {
+    delete fuelRequestData.deliveryAddress;
 
     let result = validateQuote(fuelRequestData);
 

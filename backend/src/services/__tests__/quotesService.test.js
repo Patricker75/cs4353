@@ -15,6 +15,7 @@ describe("tests creating a new fuel quote", () => {
     amount: 10,
     unitPrice: 10,
     totalPrice: 100.0,
+    deliveryAddress: "123 Street",
     deliveryDate: new Date(2023, 11, 1),
   };
   const fuelRequestId = 10;
@@ -43,9 +44,10 @@ describe("tests creating a new fuel quote", () => {
         values: [
           userId,
           requestData.amount,
-          requestData.deliveryDate,
           requestData.unitPrice,
           requestData.totalPrice,
+          requestData.deliveryAddress,
+          requestData.deliveryDate,
         ],
       })
     );
@@ -64,6 +66,7 @@ describe("tests getting a single fuel quote", () => {
     amount: 10,
     unitPrice: 10,
     totalPrice: 100.0,
+    deliveryAddress: "123 Street",
     deliveryDate: new Date(2023, 11, 1),
   };
 
@@ -80,6 +83,7 @@ describe("tests getting a single fuel quote", () => {
           amount: request.amount,
           unit_price: request.unitPrice,
           total_price: request.totalPrice,
+          delivery_address: request.deliveryAddress,
           delivery_date: request.deliveryDate,
         },
       ],
@@ -109,6 +113,7 @@ describe("tests getting fuel quote history", () => {
       amount: 10,
       unitPrice: 10,
       totalPrice: 100.0,
+      deliveryAddress: "123 Street",
       deliveryDate: new Date(2023, 11, 1),
     },
     {
@@ -117,6 +122,7 @@ describe("tests getting fuel quote history", () => {
       amount: 50,
       unitPrice: 4,
       totalPrice: 200.0,
+      deliveryAddress: "456 Road",
       deliveryDate: new Date(2023, 11, 20),
     },
   ];
@@ -134,6 +140,7 @@ describe("tests getting fuel quote history", () => {
           amount: request.amount,
           unit_price: request.unitPrice,
           total_price: request.totalPrice,
+          delivery_address: request.deliveryAddress,
           delivery_date: request.deliveryDate,
         };
       }),
