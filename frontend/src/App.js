@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   ClientProfile,
-  DataDisplay,
+  FuelQuoteHistory,
   FuelQuoteForm,
   Login,
   NavBar,
@@ -29,7 +29,7 @@ const App = () => {
             <Route path="/load" element={<DataLoad />} />
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/fuel" element={<FuelQuoteForm />} />
-            <Route path="/display" element={<DataDisplay />} />
+            <Route path="/display" element={<FuelQuoteHistory />} />
             <Route path="/profile" element={<ClientProfile />} />
           </Route>
         </Routes>
