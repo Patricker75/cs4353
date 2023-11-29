@@ -1,23 +1,20 @@
 import { executeQuery } from "../db";
 
-export const getLogin = async (email, hashedPassword) => {
+export const getLogin = async (email) => {
   const query = {
     text: `
     SELECT
-      id
+      *
     FROM
       login
     WHERE
-      email = $1
-    AND
-      password = $2;
-    `,
-    values: [email, hashedPassword],
+      email = $1;`,
+    values: [email],
   };
 
   let result = await executeQuery(query);
 
-  return result.rows[0]?.id || null;
+  return result.rows[0] || null;
 };
 
 export const addLogin = async (email, hashedPassword) => {

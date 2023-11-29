@@ -1,9 +1,9 @@
-import { hashPassword } from "../utils/hash";
+import { hashPassword, comparePassword } from "../utils/hash";
 import { addLogin, getLogin } from "../services/loginService";
 
 export const registerLogin = async (email, password) => {
   try {
-    let hashedPassword = hashPassword(password);
+    let hashedPassword = await hashPassword(password);
 
     let loginId = await addLogin(email, hashedPassword);
 
@@ -17,15 +17,20 @@ export const registerLogin = async (email, password) => {
 
 export const attemptLogin = async (email, password) => {
   try {
-    let hashedPassword = hashPassword(password);
+    let login = await getLogin(email);
 
-    let loginId = await getLogin(email, hashedPassword);
-
-    if (!loginId) {
+    // If no login exists in DB
+    if (!login) {
       return -1;
     }
 
-    return loginId;
+    let validPassword = await comparePassword(password, login.password);
+
+    if (!validPassword) {
+      return -1;
+    }
+
+    return login.id;
   } catch (error) {
     console.error(error);
   }

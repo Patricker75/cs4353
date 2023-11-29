@@ -1,4 +1,4 @@
-import { hashPassword, compare } from "../hash";
+import { hashPassword, comparePassword } from "../hash";
 
 describe("tests hash algorithm", () => {
   const password = "password";
@@ -12,7 +12,7 @@ describe("tests hash algorithm", () => {
   });
 
   it("should compare passwords", async () => {
-    let result = await compare(password, hashedPassword);
+    let result = await comparePassword(password, hashedPassword);
 
     expect(result).toBe(true);
   });
