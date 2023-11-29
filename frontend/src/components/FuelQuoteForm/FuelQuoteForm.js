@@ -58,7 +58,8 @@ function FuelQuoteForm() {
         dispatch(handleQuoteAdd(quoteData))
           .unwrap()
           .then(() => {
-            console.log("ALERT USER");
+            alert("Fuel Request has been Recorded");
+
             setQuote(initialQuote);
             setPricing(initialPricing);
           })

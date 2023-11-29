@@ -24,10 +24,10 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<RegistrationForm />} />
 
           <Route element={<RequireAuth />}>
             <Route path="/load" element={<DataLoad />} />
-            <Route path="/register" element={<RegistrationForm />} />
             <Route path="/fuel" element={<FuelQuoteForm />} />
             <Route path="/display" element={<FuelQuoteHistory />} />
             <Route path="/profile" element={<ClientProfile />} />
