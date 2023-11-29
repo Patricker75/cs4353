@@ -7,18 +7,22 @@ DECLARE
 	user_id_4 login.id%TYPE;
 BEGIN
 	-- Creating dummy logins
+	-- password: password123
 	INSERT INTO login(email, password)
 	VALUES ('user1@email.com', '$2b$04$mEUs.ph04uHf/V4ofdTRf.EHTuwFDS.M9JKSmHQ5uLIdnZN5e3M8y')
 	RETURNING id INTO user_id_1;
 
+	-- password: password456
 	INSERT INTO login(email, password)
 	VALUES ('user2@email.com', '$2b$04$Y.WiYsckfxgMauFzN4hekermSbR2MR.5Mbd6VECivHHXCw2OblZDC')
 	RETURNING id INTO user_id_2;
 
+	-- password: password789
 	INSERT INTO login(email, password)
 	VALUES ('user3@email.com', '$2b$04$xTq2t7rwJsyTxbOzA8VQS.LpPUu94I4hyEKkWwXAdLU88XQ6moloy')
 	RETURNING id INTO user_id_3;
 	
+	-- password: password135
 	INSERT INTO login(email, password)
 	VALUES ('user4@email.com', '$2b$04$Lvxlk2y4UNi5NfBsGMiFLevWq3A05PQescOWfd2SY3iV7hxQhGMES')
 	RETURNING id INTO user_id_4;
