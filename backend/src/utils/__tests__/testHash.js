@@ -1,8 +1,8 @@
-const {hashPassword} = require('../hash');
+import { hashPassword } from '../hash';
 
-const password = 'mySecurePassword123';
+const plainTextPassword = 'mySecurePassword123';
 
-hashPassword(password)
+hashPassword(plainTextPassword)
   .then((hashedPassword) => {
     console.log('Hashed Password:', hashedPassword);
   })
