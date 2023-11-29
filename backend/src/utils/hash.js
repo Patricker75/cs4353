@@ -1,16 +1,11 @@
-const bcrypt = require ('bcrypt');
-const saltRounds = 10; // Number of salt rounds for bcrypt. The higher the saltRounds value, the more time the hashing algorithm takes.
+import bcrypt from "bcrypt";
+
+const saltRounds = 1;
 
 export const hashPassword = async (password) => {
-  // TODO Implement Password Hasher
-  // console.log("IMPLEMENT!!");
-  try {
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-    return hashedPassword;
-  } catch (error) {
-    // Handle error while hashin
-    throw new Error('Error hashing password');
-  }
+  return await bcrypt.hash(password, saltRounds);
+};
 
-  // return `!!${password}!!`; // Is this salt? Or is this pepper? -Hiep
+export const comparePassword = async (password, hash) => {
+  return await bcrypt.compare(password, hash);
 };

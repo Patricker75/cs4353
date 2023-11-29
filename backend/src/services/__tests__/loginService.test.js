@@ -39,14 +39,15 @@ describe("tests getting a login", () => {
   const loginId = 1;
 
   const email = "user@mail.com";
-  const hashedPassword = "superhash";
-  const badPassword = "badpassword";
+  const hashedPassword = "hashedPassword";
 
-  it("should get an id - valid login", async () => {
+  it("should get a login - login with email exists", async () => {
     mockExecuteQuery.mockResolvedValue({
       rows: [
         {
           id: loginId,
+          email: email,
+          password: hashedPassword,
         },
       ],
       command: "",
@@ -55,18 +56,18 @@ describe("tests getting a login", () => {
       fields: [],
     });
 
-    let result = await getLogin(email, hashedPassword);
+    let result = await getLogin(email);
 
     expect(mockExecuteQuery).toBeCalledWith(
       expect.objectContaining({
-        values: [email, hashedPassword],
+        values: [email],
       })
     );
     expect(result).toEqual(loginId);
     expect(typeof result).toEqual("number");
   });
 
-  it("should get an null - invalid login", async () => {
+  it("should get an null - login with email does not exist", async () => {
     mockExecuteQuery.mockResolvedValue({
       rows: [],
       command: "",
@@ -75,11 +76,11 @@ describe("tests getting a login", () => {
       fields: [],
     });
 
-    let result = await getLogin(email, badPassword);
+    let result = await getLogin(email);
 
     expect(mockExecuteQuery).toBeCalledWith(
       expect.objectContaining({
-        values: [email, badPassword],
+        values: [email],
       })
     );
     expect(result).toBeNull();
