@@ -1,12 +1,9 @@
 import "./ClientProfile.css";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  handleProfileUpdate,
-  handleProfilGet,
-} from "../../redux/slices/profileSlice";
+import { handleProfileUpdate } from "../../redux/slices/profileSlice";
 import states from "../../utils/states";
 import validateProfile from "../../validators/profile";
 
@@ -27,7 +24,14 @@ const ClientProfile = () => {
       case 0:
         setFormError("");
 
-        dispatch(handleProfileUpdate(profile));
+        dispatch(handleProfileUpdate(profile))
+          .unwrap()
+          .then(() => {
+            alert("Profile Updated Succesfully");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
         break;
       case -1:
         setFormError("Invalid Name");
@@ -137,7 +141,7 @@ const ClientProfile = () => {
         <p>
           <label htmlFor="zipcode">Zipcode:</label>
           <input
-            type="text"
+            type="number"
             name="zipcode"
             id="zipcode"
             defaultValue={userProfile.zipCode}

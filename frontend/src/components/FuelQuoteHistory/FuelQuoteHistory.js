@@ -1,7 +1,6 @@
 import "./FuelQuoteHistory.css";
 
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { handleHistoryGet } from "../../redux/slices/historySlice";
@@ -9,13 +8,12 @@ import months from "../../utils/months";
 
 const FuelQuoteHistory = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const quotes = useSelector((state) => state.history.items);
 
   useEffect(() => {
     dispatch(handleHistoryGet());
-  }, []);
+  }, [dispatch]);
 
   const dateToString = (date) => {
     return `${
@@ -40,7 +38,7 @@ const FuelQuoteHistory = () => {
         <tbody>
           {quotes.length > 0 &&
             quotes.map((quote) => (
-              <tr>
+              <tr key={quote.requestId}>
                 <td>{quote.requestId}</td>
                 <td>{quote.amount}</td>
                 <td>${quote.unitPrice}</td>

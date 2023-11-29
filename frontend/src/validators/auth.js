@@ -4,7 +4,6 @@ const validate = (data) => {
 
   if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email))
     return -1;
-  console.log("IMPLEMENT VERIFYING PASSWORD");
 
   return 0;
 };
