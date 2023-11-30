@@ -63,8 +63,11 @@ describe("tests getting a login", () => {
         values: [email],
       })
     );
-    expect(result).toEqual(loginId);
-    expect(typeof result).toEqual("number");
+    expect(result).toEqual({
+      id: loginId,
+      email,
+      password: hashedPassword,
+    });
   });
 
   it("should get an null - login with email does not exist", async () => {

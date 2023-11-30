@@ -45,6 +45,19 @@ describe("tests getting a profile", () => {
     expect(mockGetProfile).toBeCalledWith(userId);
     expect(result).toBeNull();
   });
+
+  it("should throw error - something wrong with database", async () => {
+    mockGetProfile.mockRejectedValue(Error("An error has occurred"));
+
+    try {
+      await getUserProfile(userId);
+
+      fail("should have thrown error");
+    } catch (error) {
+      expect(error.message).toEqual("An error has occurred");
+      expect(mockGetProfile).toBeCalledWith(userId);
+    }
+  });
 });
 
 describe("tests creating a new profile", () => {

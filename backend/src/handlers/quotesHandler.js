@@ -4,26 +4,6 @@ import {
   getUserQuoteHistory,
 } from "../controllers/quotesController";
 
-// Custom validation function to check if fuel quote data is valid
-const isFuelQuoteDataValid = (requestData) => {
-  return (
-    requestData &&
-    typeof requestData === "object" &&
-    typeof requestData.amount === "number" &&
-    requestData.amount > 0 &&
-    requestData.amount <= 1000 &&
-    typeof requestData.unitPrice === "number" &&
-    requestData.unitPrice > 0 &&
-    requestData.unitPrice <= 10 &&
-    typeof requestData.deliveryDate === "string" &&
-    requestData.deliveryDate.trim() !== "" &&
-    requestData.deliveryDate.length <= 255 &&
-    typeof requestData.mainAddress === "string" &&
-    requestData.mainAddress.trim() !== "" &&
-    requestData.mainAddress.length <= 255
-  );
-};
-
 export const handleAddQuote = async (req, res) => {
   try {
     let userId = req.get("userId");
