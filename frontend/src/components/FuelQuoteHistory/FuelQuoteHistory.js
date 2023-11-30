@@ -1,4 +1,4 @@
-import "./FuelQuoteHistory.css";
+import styles from "./FuelQuoteHistory.module.css";
 
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,9 +22,10 @@ const FuelQuoteHistory = () => {
   };
 
   return (
-    <div className="container2">
-      <table>
-        <thead>
+    <>
+      <h1>Your Quotes History</h1>
+      <table id={styles["tbl-history"]}>
+        <thead id={styles["tbl-header"]}>
           <tr>
             <th>Request Number</th>
             <th>Amount</th>
@@ -35,7 +36,7 @@ const FuelQuoteHistory = () => {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id={styles["tbl-body"]}>
           {quotes.length > 0 &&
             quotes.map((quote) => (
               <tr key={quote.requestId}>
@@ -49,7 +50,7 @@ const FuelQuoteHistory = () => {
             ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 };
 

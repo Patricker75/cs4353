@@ -1,0 +1,25 @@
+#tbl-history {
+  width: 70%;
+
+  color: white;
+
+  background-color: black;
+  border: 2px solid black;
+}
+
+#tbl-header {
+  background: purple;
+  border: none;
+}
+
+#tbl-header th {
+  padding: 0.6em 0.9em;
+}
+
+#tbl-body td {
+  padding: 1em;
+}
+
+#tbl-body tr:nth-child(even) {
+  background-color: rgb(65, 65, 65);
+}
