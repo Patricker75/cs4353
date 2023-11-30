@@ -23,7 +23,7 @@ const FuelQuoteHistory = () => {
 
   return (
     <>
-      <h1>Your Quotes History</h1>
+      <h1 className="page-header">Your Quotes History</h1>
       <table id={styles["tbl-history"]}>
         <thead id={styles["tbl-header"]}>
           <tr>

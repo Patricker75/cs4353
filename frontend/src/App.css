@@ -18,13 +18,18 @@ main {
 }
 
 .page-header {
+  padding: 0.2em 2.5em;
+
   font-size: 2.5rem;
+
+  color: #e2e2e2;
+  background-color: rgba(255, 0, 0, 0.35);
 }
 
 .form-error {
   color: red;
   font-size: 1.5rem;
-  
+
   border: none;
 
   margin: 0;
