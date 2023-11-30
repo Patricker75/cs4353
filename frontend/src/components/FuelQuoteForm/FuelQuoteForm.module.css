@@ -1,0 +1,40 @@
+#form-request {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 30%;
+
+  background-color: rgba(0, 0, 0, 0.75);
+
+  border-radius: 30px;
+}
+
+#form-request :not(.form-error) p {
+  color: white;
+  width: 100%;
+}
+
+#form-request label,
+#form-request p {
+  left: 1%;
+
+  color: white;
+
+  padding-right: 10px;
+}
+
+#form-request input {
+  right: 0%;
+}
+
+#form-request input[type="submit"] {
+  margin: 0.8em 1em;
+  padding: 0.3em 0.8em;
+}
+
+#form-request input:hover,
+#form-request select:hover {
+  background-color: rgb(196, 196, 196);
+}
