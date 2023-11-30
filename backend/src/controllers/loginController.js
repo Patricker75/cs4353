@@ -12,6 +12,8 @@ export const registerLogin = async (email, password) => {
     if (error.code === "23505") {
       throw Error("Email is already in use");
     }
+
+    throw error;
   }
 };
 
@@ -32,6 +34,6 @@ export const attemptLogin = async (email, password) => {
 
     return login.id;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };

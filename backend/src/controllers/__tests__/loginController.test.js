@@ -40,6 +40,23 @@ describe("tests registering a new login", () => {
       expect(error.message).toEqual("Email is already in use");
     }
   });
+
+  it("should throw error - not a duplicate email error", async () => {
+    mockAddLogin.mockRejectedValue({
+      code: "12345",
+      message: "An error has occurred",
+    });
+    mockHashPassword.mockResolvedValue(hashedPassword);
+
+    try {
+      await registerLogin(email, password);
+
+      fail("should have thrown duplicate email error");
+    } catch (error) {
+      expect(mockAddLogin).toBeCalledWith(email, hashedPassword);
+      expect(error.message).toEqual("An error has occurred");
+    }
+  });
 });
 
 describe("tests login attempts", () => {
@@ -92,5 +109,19 @@ describe("tests login attempts", () => {
     expect(mockGetLogin).toBeCalledWith(email);
     expect(mockComparePassword).toBeCalledWith(password, hashedPassword);
     expect(loginId).toEqual(-1);
+  });
+
+  it("should throw error - something wrong with database", async () => {
+    mockGetLogin.mockRejectedValue(Error("An error has occurred"));
+
+    try {
+      await attemptLogin(email, password);
+
+      fail("should have thrown error");
+    } catch (error) {
+      expect(error.message).toEqual("An error has occurred");
+      expect(mockGetLogin).toBeCalledWith(email);
+      expect(mockComparePassword).not.toBeCalled();
+    }
   });
 });

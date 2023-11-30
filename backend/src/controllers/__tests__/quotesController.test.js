@@ -88,6 +88,19 @@ describe("tests getting a fuel quote", () => {
     expect(mockGetFuelQuote).toBeCalledWith(userId, fuelRequestId);
     expect(result).toBeNull();
   });
+
+  it("should throw error - something wrong with database", async () => {
+    mockGetFuelQuote.mockRejectedValue(Error("An error has occurred"));
+
+    try {
+      await getUserFuelQuote(userId, fuelRequestId);
+
+      fail("should have thrown error");
+    } catch (error) {
+      expect(error.message).toEqual("An error has occurred");
+      expect(mockGetFuelQuote).toBeCalledWith(userId, fuelRequestId);
+    }
+  });
 });
 
 describe("tests getting user's quote history", () => {

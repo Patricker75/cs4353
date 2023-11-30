@@ -16,7 +16,7 @@ export const getUserProfile = async (userId) => {
 
     return profile;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
