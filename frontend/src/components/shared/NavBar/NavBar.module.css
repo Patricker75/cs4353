@@ -1,25 +1,35 @@
 nav {
-  background-color: #4b0082;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
+
   top: 0;
   left: 0;
+  
+  background-color: #4b0082;
+  
   width: 100%;
-  z-index: 1000;
-  border-bottom: 1px solid white;
+  z-index: 1;
 }
 
 nav a {
   color: white;
   text-decoration: none;
+
   padding: 10px 20px;
+  
   font-size: 20px;
-  font-family: Arial, sans-serif;
-  border-right: 1px solid white;
 }
 
-nav a:first {
-  padding-left: 0;
+nav a:hover {
+  color: gray;
+}
+
+nav button {
+  margin: 0.8em 1em;
+  padding: 0.3em .8em;
+}
+
+nav button:hover {
+  background-color: darkgray;
 }
