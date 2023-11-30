@@ -1,4 +1,4 @@
-import "./FuelQuoteForm.css";
+import styles from "./FuelQuoteForm.module.css";
 
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -89,9 +89,10 @@ function FuelQuoteForm() {
   const generatedProfitMargin = 0.1;
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
+    <>
+      <h1 className="page-header">Request a Fuel Quote</h1>
+      <form id={styles["form-request"]} onSubmit={handleSubmit}>
+        <p>
           <label htmlFor="amount">Amount to Request:</label>
           <input
             type="number"
@@ -104,12 +105,12 @@ function FuelQuoteForm() {
             }
             required
           />
-        </div>
+        </p>
 
-        <div className="form-group">
+        <p>
           <label htmlFor="address">Delivery Address:</label>
           {!userProfile.addressAux ? (
-            <p>{userProfile.addressPrimary}</p>
+            <>{userProfile.addressPrimary}</>
           ) : (
             <select
               name="deliveryAddress"
@@ -126,9 +127,9 @@ function FuelQuoteForm() {
               </option>
             </select>
           )}
-        </div>
+        </p>
 
-        <div className="form-group">
+        <p>
           <label htmlFor="deliveryDate">Delivery Date:</label>
           <input
             type="date"
@@ -139,23 +140,15 @@ function FuelQuoteForm() {
               setQuote({ ...quote, deliveryDate: evt.target.value })
             }
           />
-        </div>
+        </p>
 
-        <div className="form-group">
-          <label htmlFor="unitPrice">Price per Gallon:</label>
-          <p>{pricing.unitPrice}</p>
-        </div>
+        <p>Price per Gallon: {pricing.unitPrice}</p>
 
-        <div className="form-group">
-          <label htmlFor="unitPrice">Total:</label>
-          <p>{pricing.totalPrice}</p>
-        </div>
+        <p>Total: {pricing.totalPrice}</p>
 
-        <div className="form-group">
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
+        {formError && <p className="form-error">{formError}</p>}
+
+        <input type="submit" value="Submit" />
 
         <div className="profit-button">
           {generatedProfitMargin !== null && (
@@ -165,8 +158,7 @@ function FuelQuoteForm() {
           )}
         </div>
       </form>
-      <p>{formError}</p>
-    </div>
+    </>
   );
 }
 

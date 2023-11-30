@@ -1,8 +1,8 @@
-import "./Login.css";
+import styles from "./Login.module.css";
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { handleLoginUser } from "../../redux/slices/authSlice";
 import validateAuth from "../../validators/auth";
@@ -53,9 +53,9 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <h2 id="my-black">Login</h2>
-      <form className="form" onSubmit={(evt) => handleLogin(evt)}>
+    <>
+      <h1 className="page-header">Login</h1>
+      <form id={styles["container-login"]} onSubmit={(evt) => handleLogin(evt)}>
         <input
           type="email"
           placeholder="Email"
@@ -68,13 +68,14 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input className="login-button" type="submit" value="Login" />
+        {formError && <p className="form-error">{formError}</p>}
+
+        <input id={styles["btn-login"]} type="submit" value="Login" />
+        <Link id={styles["link-register"]} to="/register">
+          Create an Account
+        </Link>
       </form>
-      <button className="register-button" onClick={() => navigate("/register")}>
-        Register
-      </button>
-      <p>{formError}</p>
-    </div>
+    </>
   );
 };
 

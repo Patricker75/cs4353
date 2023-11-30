@@ -1,4 +1,4 @@
-import "./RegistrationForm.css";
+import styles from "./RegistrationForm.module.css";
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -44,13 +44,17 @@ const RegistrationForm = () => {
       case -2:
         setFormError("Invalid Password");
         return;
+      default:
+        setFormError("");
+        return;
     }
   };
 
   return (
-    <div className="container">
-      <form className="form" onSubmit={handleRegister}>
-        <h2 id="my-black">Register</h2>
+    <>
+      <h1 className="page-header">Register</h1>
+
+      <form id={styles["container-register"]} onSubmit={handleRegister}>
         <input
           type="email"
           id="email"
@@ -58,6 +62,7 @@ const RegistrationForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
         <input
           type="password"
           id="password"
@@ -65,20 +70,20 @@ const RegistrationForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          className="register-button"
-          type="button"
-          onClick={handleRegister}
-        >
-          Register
-        </button>
 
-        <p className="login-link">
-          Already have an account? <Link to="/">Login</Link>
-        </p>
+        {formError && <p className="form-error">{formError}</p>}
+
+        <input
+          id={styles["btn-register"]}
+          type="submit"
+          value="Register Account"
+        />
+
+        <Link id={styles["link-login"]} to="/">
+          Log In to Account
+        </Link>
       </form>
-      <p>{formError}</p>
-    </div>
+    </>
   );
 };
 

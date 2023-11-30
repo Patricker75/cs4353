@@ -1,14 +1,37 @@
-html,
-body {
+:root {
+  background: linear-gradient(to bottom, blue, purple, black);
   height: 100%;
-  margin: 0;
-  padding: 0;
+
+  text-align: center;
+  overflow: hidden;
 }
 
 body {
-  background: linear-gradient(to bottom, blue, purple, black);
-  color: black;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow: hidden;
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header {
+  padding: 0.2em 2.5em;
+
+  font-size: 2.5rem;
+
+  color: #e2e2e2;
+  background-color: rgba(255, 0, 0, 0.35);
+}
+
+.form-error {
+  color: red;
+  font-size: 1.5rem;
+
+  border: none;
+
+  margin: 0;
+  padding: 0;
 }
