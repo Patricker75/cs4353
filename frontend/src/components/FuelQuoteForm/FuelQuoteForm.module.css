@@ -11,15 +11,8 @@
   border-radius: 30px;
 }
 
-#form-request :not(.form-error) p {
-  color: white;
-  width: 100%;
-}
-
 #form-request label,
-#form-request p {
-  left: 1%;
-
+#form-request p:not(.form-error) {
   color: white;
 
   padding-right: 10px;
