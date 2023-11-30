@@ -150,14 +150,6 @@ function FuelQuoteForm() {
         {formError && <p className="form-error">{formError}</p>}
 
         <input type="submit" value="Submit" />
-
-        <div className="profit-button">
-          {generatedProfitMargin !== null && (
-            <div className="result">
-              <p>Profit Margin: {generatedProfitMargin.toFixed(2)}</p>
-            </div>
-          )}
-        </div>
       </form>
     </>
   );
