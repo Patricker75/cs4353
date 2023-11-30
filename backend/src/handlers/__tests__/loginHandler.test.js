@@ -102,4 +102,18 @@ describe("tests login attempts", () => {
       })
     );
   });
+
+  it("should send an error - internal server error", async () => {
+    mockAttemptLogin.mockRejectedValue(Error("An error has occurred"));
+
+    await handleLogin(mockRequest, mockResponse);
+
+    expect(mockAttemptLogin).toBeCalledWith(email, password);
+    expect(mockResponse.status).toBeCalledWith(500);
+    expect(mockResponse.send).toBeCalledWith(
+      expect.objectContaining({
+        message: "Internal Server Error",
+      })
+    );
+  });
 });

@@ -76,6 +76,34 @@ describe("tests getting a profile", () => {
       })
     );
   });
+
+  it("should send an error - internal server error", async () => {
+    mockGetUserProfile.mockRejectedValue(Error("An error has occurred"));
+
+    await handleGetProfile(mockRequest, mockResponse);
+
+    expect(mockGetUserProfile).toBeCalledWith(userId);
+    expect(mockResponse.status).toBeCalledWith(500);
+    expect(mockResponse.send).toBeCalledWith(
+      expect.objectContaining({
+        error: "Internal Server Error",
+      })
+    );
+  });
+
+  it("should send an error - internal server error", async () => {
+    mockGetUserProfile.mockRejectedValue(Error("An error has occurred"));
+
+    await handleUpdateProfile(mockRequest, mockResponse);
+
+    expect(mockGetUserProfile).toBeCalledWith(userId);
+    expect(mockResponse.status).toBeCalledWith(500);
+    expect(mockResponse.send).toBeCalledWith(
+      expect.objectContaining({
+        error: "Internal Server Error",
+      })
+    );
+  });
 });
 
 describe("tests creating a new profile", () => {
@@ -167,6 +195,20 @@ describe("tests creating a new profile", () => {
     expect(mockResponse.send).toBeCalledWith(
       expect.objectContaining({
         error: "Missing userId",
+      })
+    );
+  });
+
+  it("should send an error - internal server error", async () => {
+    mockGetUserProfile.mockRejectedValue(Error("An error has occurred"));
+
+    await handleUpdateProfile(mockRequest, mockResponse);
+
+    expect(mockGetUserProfile).toBeCalledWith(userId);
+    expect(mockResponse.status).toBeCalledWith(500);
+    expect(mockResponse.send).toBeCalledWith(
+      expect.objectContaining({
+        error: "Internal Server Error",
       })
     );
   });
