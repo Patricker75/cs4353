@@ -1,4 +1,4 @@
-import "./ClientProfile.css";
+import styles from "./ClientProfile.module.css";
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,8 +57,9 @@ const ClientProfile = () => {
   };
 
   return (
-    <div className="container1">
-      <form className="form" onSubmit={handleSubmit}>
+    <>
+      <h1 className="page-header">Edit Your Profile</h1>
+      <form id={styles["form-profile"]} onSubmit={handleSubmit}>
         <p>
           <label htmlFor="name">Full Name:</label>
           <input
@@ -153,11 +154,11 @@ const ClientProfile = () => {
             required
           />
         </p>
+        {formError && <p className="form-error">{formError}</p>}
 
         <input type="submit" value="Save" />
       </form>
-      <p>{formError}</p>
-    </div>
+    </>
   );
 };
 
