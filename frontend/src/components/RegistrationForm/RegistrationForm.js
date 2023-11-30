@@ -16,7 +16,10 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState("");
 
-  const handleRegister = () => {
+  const handleRegister = (evt) => {
+    evt.stopPropagation();
+    evt.preventDefault();
+
     let data = {
       email,
       password,
