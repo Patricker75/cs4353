@@ -32,12 +32,14 @@ function FuelQuoteForm() {
   useEffect(() => {
     if (quote.amount < 1) return;
 
-    dispatch(handlePriceGet(quote.amount)).then(({ payload }) => {
-      setPricing({
-        unitPrice: payload.unitPrice,
-        totalPrice: payload.total,
+    dispatch(handlePriceGet(quote.amount))
+      .unwrap()
+      .then((response) => {
+        setPricing({
+          unitPrice: response.unitPrice,
+          totalPrice: response.total,
+        });
       });
-    });
   }, [dispatch, quote.amount]);
 
   const handleSubmit = (evt) => {
@@ -53,6 +55,7 @@ function FuelQuoteForm() {
         let quoteData = {
           ...quote,
           ...pricing,
+          amount: parseFloat(quote.amount),
         };
 
         dispatch(handleQuoteAdd(quoteData))
@@ -100,9 +103,7 @@ function FuelQuoteForm() {
             placeholder="Amount or Number"
             min="1"
             value={quote.amount}
-            onChange={(evt) =>
-              setQuote({ ...quote, amount: parseFloat(evt.target.value) })
-            }
+            onChange={(evt) => setQuote({ ...quote, amount: evt.target.value })}
             required
           />
         </p>
