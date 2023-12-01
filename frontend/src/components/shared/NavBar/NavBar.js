@@ -19,7 +19,6 @@ const NavBar = () => {
   return (
     shouldShowNavBar && (
       <nav>
-        <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">Your Profile</NavLink>
         <NavLink to="/fuel">Fuel Request Form</NavLink>
         <NavLink to="/display">Fuel Request History</NavLink>
@@ -27,6 +26,7 @@ const NavBar = () => {
       </nav>
     )
   );
+  //<NavLink to="/">Home</NavLink> - taken out because it is unsuitable for the purpose of navbar
 };
 
 export default NavBar;
