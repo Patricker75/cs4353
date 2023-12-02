@@ -7,6 +7,7 @@ import {
   ClientProfile,
   FuelQuoteHistory,
   FuelQuoteForm,
+  Landing,
   Login,
   NavBar,
   RegistrationForm,
@@ -23,7 +24,8 @@ const App = () => {
 
       <main>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegistrationForm />} />
 
           <Route element={<RequireAuth />}>
