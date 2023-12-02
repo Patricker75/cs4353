@@ -82,7 +82,7 @@ const RegistrationForm = () => {
           value="Register Account"
         />
 
-        <Link id={styles["link-login"]} to="/">
+        <Link id={styles["link-login"]} to="/login">
           Log In to Account
         </Link>
       </form>

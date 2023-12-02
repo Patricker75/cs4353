@@ -5,11 +5,13 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   ClientProfile,
-  FuelQuoteHistory,
+  Error404,
   FuelQuoteForm,
+  FuelQuoteHistory,
+  Landing,
   Login,
-  NavBar,
   RegistrationForm,
+  NavBar,
   RequireAuth,
   DataLoad,
 } from "./components";
@@ -23,7 +25,8 @@ const App = () => {
 
       <main>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegistrationForm />} />
 
           <Route element={<RequireAuth />}>
@@ -32,6 +35,8 @@ const App = () => {
             <Route path="/display" element={<FuelQuoteHistory />} />
             <Route path="/profile" element={<ClientProfile />} />
           </Route>
+
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </main>
     </>

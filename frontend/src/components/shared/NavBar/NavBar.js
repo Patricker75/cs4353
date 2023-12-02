@@ -8,7 +8,7 @@ const NavBar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const shouldShowNavBar = !["/", "/register"].includes(location.pathname);
+  const shouldShowNavBar = ["/profile","/fuel", "/display"].includes(location.pathname);
 
   const handleLogout = () => {
     dispatch({
