@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1701481303613" clover="3.2.0">
+  <project timestamp="1701481303614" name="All files">
+    <metrics statements="285" coveredstatements="283" conditionals="88" coveredconditionals="88" methods="43" coveredmethods="42" elements="416" coveredelements="413" complexity="0" loc="285" ncloc="285" packages="6" files="17" classes="17"/>
+    <package name="src">
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="db.js" path="/home/pi/Programs/cs4353/backend/src/db.js">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="12" type="stmt"/>
+        <line num="13" count="12" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.controllers">
+      <metrics statements="94" coveredstatements="94" conditionals="26" coveredconditionals="26" methods="15" coveredmethods="15"/>
+      <file name="loginController.js" path="/home/pi/Programs/cs4353/backend/src/controllers/loginController.js">
+        <metrics statements="18" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="25" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+      </file>
+      <file name="pricingController.js" path="/home/pi/Programs/cs4353/backend/src/controllers/pricingController.js">
+        <metrics statements="32" coveredstatements="32" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="16" type="stmt"/>
+        <line num="11" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="16" type="stmt"/>
+        <line num="21" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="14" type="stmt"/>
+        <line num="38" count="14" type="stmt"/>
+        <line num="39" count="14" type="stmt"/>
+        <line num="43" count="14" type="stmt"/>
+        <line num="45" count="14" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="9" type="stmt"/>
+        <line num="51" count="9" type="stmt"/>
+        <line num="53" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="57" count="6" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+      </file>
+      <file name="profileController.js" path="/home/pi/Programs/cs4353/backend/src/controllers/profileController.js">
+        <metrics statements="19" coveredstatements="19" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+      </file>
+      <file name="quotesController.js" path="/home/pi/Programs/cs4353/backend/src/controllers/quotesController.js">
+        <metrics statements="25" coveredstatements="25" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="34" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="48" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.handlers">
+      <metrics statements="114" coveredstatements="114" conditionals="24" coveredconditionals="24" methods="8" coveredmethods="8"/>
+      <file name="loginHandler.js" path="/home/pi/Programs/cs4353/backend/src/handlers/loginHandler.js">
+        <metrics statements="20" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="9" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+      </file>
+      <file name="pricingHandler.js" path="/home/pi/Programs/cs4353/backend/src/handlers/pricingHandler.js">
+        <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+      </file>
+      <file name="profileHandler.js" path="/home/pi/Programs/cs4353/backend/src/handlers/profileHandler.js">
+        <metrics statements="32" coveredstatements="32" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="11" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="24" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="45" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="57" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+      </file>
+      <file name="quotesHandler.js" path="/home/pi/Programs/cs4353/backend/src/handlers/quotesHandler.js">
+        <metrics statements="44" coveredstatements="44" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="3"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="11" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="41" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="52" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="63" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="81" count="3" type="stmt"/>
+        <line num="82" count="3" type="stmt"/>
+        <line num="84" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="102" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.services">
+      <metrics statements="44" coveredstatements="44" conditionals="2" coveredconditionals="2" methods="14" coveredmethods="14"/>
+      <file name="loginService.js" path="/home/pi/Programs/cs4353/backend/src/services/loginService.js">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="pricingService.js" path="/home/pi/Programs/cs4353/backend/src/services/pricingService.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+      </file>
+      <file name="profileService.js" path="/home/pi/Programs/cs4353/backend/src/services/profileService.js">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+      </file>
+      <file name="quotesServices.js" path="/home/pi/Programs/cs4353/backend/src/services/quotesServices.js">
+        <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="83" count="3" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="hash.js" path="/home/pi/Programs/cs4353/backend/src/utils/hash.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.validators">
+      <metrics statements="24" coveredstatements="24" conditionals="36" coveredconditionals="36" methods="3" coveredmethods="3"/>
+      <file name="pricingValidator.js" path="/home/pi/Programs/cs4353/backend/src/validators/pricingValidator.js">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="7" type="stmt"/>
+      </file>
+      <file name="profileValidator.js" path="/home/pi/Programs/cs4353/backend/src/validators/profileValidator.js">
+        <metrics statements="9" coveredstatements="9" conditionals="14" coveredconditionals="14" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="3" type="stmt"/>
+      </file>
+      <file name="quotesValidator.js" path="/home/pi/Programs/cs4353/backend/src/validators/quotesValidator.js">
+        <metrics statements="11" coveredstatements="11" conditionals="18" coveredconditionals="18" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
