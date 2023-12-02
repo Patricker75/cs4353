@@ -1,19 +1,23 @@
 import styles from "./Landing.module.css";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
 
     return (
         <>
-        <h1 className="page-header">Welcome Motherfucker</h1>
+        <h1 className={styles["page-header"]}>Fuel Wholesale</h1>
 
-        <Link id={styles["link-login"]} to="/">
-        Log In to Account
+        <div className={styles["button-container"]}>
+        <Link className={styles["button-login"]} to="/login">
+            <button>Log In to Account</button>
         </Link>
-        <Link id={styles["link-register"]} to="/register">
-        Create an Account
+        <Link className={styles["button-register"]} to="/register">
+            <button>Register an Account</button>
         </Link>
+        </div>
         </>
     );
-}
+};
 
 export default Landing;

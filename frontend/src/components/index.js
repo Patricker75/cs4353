@@ -11,6 +11,7 @@ export {
   ClientProfile,
   FuelQuoteHistory,
   FuelQuoteForm,
+  Landing,
   Login,
   RegistrationForm,
   NavBar,

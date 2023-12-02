@@ -5,12 +5,12 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   ClientProfile,
-  FuelQuoteHistory,
   FuelQuoteForm,
+  FuelQuoteHistory,
   Landing,
   Login,
-  NavBar,
   RegistrationForm,
+  NavBar,
   RequireAuth,
   DataLoad,
 } from "./components";
