@@ -36,7 +36,6 @@ const App = () => {
             <Route path="/profile" element={<ClientProfile />} />
           </Route>
 
-          {/* Catch-all route for unrecognized paths */}
           <Route path="*" element={<Error404 />} />
         </Routes>
       </main>
