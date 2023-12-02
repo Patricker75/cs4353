@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   ClientProfile,
+  Error404,
   FuelQuoteForm,
   FuelQuoteHistory,
   Landing,
@@ -34,6 +35,9 @@ const App = () => {
             <Route path="/display" element={<FuelQuoteHistory />} />
             <Route path="/profile" element={<ClientProfile />} />
           </Route>
+
+          {/* Catch-all route for unrecognized paths */}
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </main>
     </>
