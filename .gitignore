@@ -1,2 +1,2 @@
-*/node_modules # Ignore the ' node_modules' directory and its contents
-.env # Ignore the '.env' file
+*/node_modules
+.env
